@@ -1,0 +1,6 @@
+/*formats the title of featured meals*/
+#featured-meals-title {
+    display: flex;
+    font-family: sans-serif;
+    justify-content: center;
+}
