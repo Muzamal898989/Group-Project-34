@@ -3,6 +3,10 @@
 footer {
     background-color: #0348ad;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 /*Formats the <h3> text in the footer*/
@@ -15,4 +19,22 @@ footer {
 .footer-p {
     font-family: sans-serif;
     color: #ffffff;
+    margin-bottom: 0px;
+}
+
+/*formats the links in the footer*/
+.footer-link {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/*changes the colour of the link when hovered on by the mouse*/
+.footer-link:hover {
+    color: lightblue;
+}
+
+/*resizes the logo*/
+.footer-logo {
+    width: 15%;
+    height: 15%;
 }
