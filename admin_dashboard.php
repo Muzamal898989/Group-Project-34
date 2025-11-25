@@ -27,13 +27,12 @@ header("Location: admin_dashboard.php");
     $name = $_POST['name'];
     $price = $_POST['price'];
     $calories = $_POST['calories'];
-    $cuisine = $_POST['cuisine'];
     $stock = $_POST['stock'];
     
-    $sql= "INSERT INTO meals (name, price, calories, cuisine, stock) VALUES (?,?,?,?,?)";
+    $sql= "INSERT INTO meals (name, price, calories, stock) VALUES (?,?,?,?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sdisi", $name,$price, $calories, $cuisine, $stock);
+    $stmt->bind_param("sdii", $name,$price, $calories, $stock);
     $stmt->execute();
     echo "meal has been added successfully WHOOP!";
 
@@ -47,12 +46,11 @@ header("Location: admin_dashboard.php");
     $name = $_POST['name'];
     $price = $_POST['price'];
     $calories = $_POST['calories'];
-    $cuisine = $_POST['cuisine'];
     $stock = $_POST['stock'];
     
     $meal_id = intval($_GET['id']);
-    $stmt = $conn->prepare("UPDATE meals SET name=?, price=?, calories=?, cuisine=?, stock=? WHERE meal_id=?");
-    $stmt->bind_param("sdisii", $name, $price, $calories, $cuisine, $stock, $meal_id);
+    $stmt = $conn->prepare("UPDATE meals SET name=?, price=?, calories=?, stock=? WHERE meal_id=?");
+    $stmt->bind_param("sdiii", $name, $price, $calories, $stock, $meal_id);
     $stmt->execute();
     echo "meal has been updated successfully WHOOP!";
 
@@ -85,8 +83,6 @@ $result = $conn->query("SELECT * FROM meals ORDER BY meal_id DESC");
           <input type="number" name="price" steps="0.01" required>
                 <label>Calories:</label>
         <input type="number" name="calories" required>
-              <label>Cuisine:</label>
-        <input type="text" name="cuisine" required>
               <label>Stock:</label>
         <input type="number" name="stock" required>
         <button type="submit">Add Meal</button>
@@ -108,8 +104,6 @@ $result = $conn->query("SELECT * FROM meals ORDER BY meal_id DESC");
           <input type="number" name="price" steps="0.01" value="<?= $meal_data['price'] ?>" required>
                 <label>Calories:</label>
         <input type="number" name="calories" value="<?= $meal_data['calories'] ?>" required>
-              <label>Cuisine:</label>
-        <input type="text" name="cuisine" value="<?= $meal_data['cuisine'] ?>" required >
               <label>Stock:</label>
         <input type="number" name="stock" value="<?= $meal_data['stock'] ?>" required >
         <button type="submit">Edit Meal</button>
@@ -124,7 +118,6 @@ $result = $conn->query("SELECT * FROM meals ORDER BY meal_id DESC");
         <th>Name</th>
         <th>Price</th>
         <th>Calories</th>
-        <th>Cuisine</th>
         <th>Stock</th>
         <th>Actions</th>
     </tr>
@@ -133,7 +126,6 @@ $result = $conn->query("SELECT * FROM meals ORDER BY meal_id DESC");
             <td><?= $row['name'] ?></td>
             <td><?= $row['price'] ?></td>
             <td><?= $row['calories'] ?></td>
-            <td><?= $row['cuisine'] ?></td>
             <td><?= $row['stock'] ?></td>
         <td>
             <a href="admin_dashboard.php?action=edit&id=<?= $row['meal_id'] ?>">Edit</a>
