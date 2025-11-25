@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  /* checking if it works */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorm Diner - Fuel Your Study Sessions</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+    <style>
+        /* ==================
+           CSS STYLES
+           ================== */
+        
+        /* Custom Fonts: Use generic fallbacks for prototyping */
+        :root {
+            --color-cream: #fef8ea; /* Light background from logo */
+            --color-orange: #d98762; /* Main accent color (DORM) */
+            --color-blue: #0348ad; /* Secondary accent color (diner) */
+            --color-dark-text: #2c3e50; /* Dark text/link color (Close to footer color) */
+            --color-grey-bg: #e6e9f0; /* The main page background color in the mockup */
+            --font-main: 'Open Sans', 'Arial', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-grey-bg);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        /* General Buttons */
+        button {
+            cursor: pointer;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        main {
+            padding: 0 5%;
+        }
+
+        /* ==================
+           HEADER/NAVBAR
+           ================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: white; /* Matches the mockup header color */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-search {
+            display: flex;
+            align-items: center;
+        }
+
+        .small-logo {
+            width: 50px; /* Adjust size */
+            height: 50px;
+            object-fit: contain;
+            margin-right: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 10px;
+            background-color: var(--color-cream);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 300px;
+            background-color: transparent;
+        }
+
+        .search-bar button {
+            background: none;
+            padding: 0;
+            margin-left: 10px;
+            color: var(--color-blue);
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links i {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: var(--color-orange);
+            cursor: pointer;
+        }
+
+        .sign-in {
+            background-color: transparent;
+            color: var(--color-orange);
+            border: 1px solid var(--color-orange);
+            margin-right: 10px;
+        }
+
+        .sign-up {
+            background-color: var(--color-orange);
+            color: white;
+        }
+
+        /* ==================
+           HERO SECTION
+           ================== */
+        .hero-section {
+            height: 350px; 
+            /* Set the background image from the mockup here. You must save the image as 'students-eating.jpg' */
+            background-image: url('students-eating.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            border-radius: 10px; /* Rounded corners for the whole section */
+        }
+
+        .hero-content {
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 25px 50px;
+            border-radius: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: var(--color-dark-text);
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-button {
+            background-color: var(--color-orange);
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+        }
+
+        /* ==================
+           MENU TABS
+           ================== */
+        .menu-tabs {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .menu-tabs nav {
+            display: inline-flex;
+            background-color: white;
+            padding: 10px 5px;
+            border-radius: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-tabs a {
+            text-decoration: none;
+            color: var(--color-dark-text);
+            padding: 8px 20px;
+            margin: 0 3px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap; /* Keep tabs on one line */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu-tabs a.active,
+        .menu-tabs a:hover {
+            background-color: var(--color-orange);
+            color: white;
+        }
+
+        /* ==================
+           MENU ITEMS
+           ================== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive 6 columns */
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .menu-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image-placeholder {
+            height: 100px;
+            background-color: var(--color-grey-bg);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.8rem;
+        }
+        
+        /* Simulating the small menu text */
+        .meal-name, .meal-price, .meal-description {
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .meal-name {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .meal-price {
+            color: var(--color-blue);
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .meal-description {
+            font-size: 0.7rem;
+            color: #777;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .add-to-cart, .read-more {
+            flex-grow: 1;
+            padding: 6px 10px;
+            font-size: 0.75rem;
+        }
+
+        .add-to-cart {
+            background-color: var(--color-blue);
+            color: white;
+        }
+
+        .read-more {
+            background-color: #eee;
+            color: var(--color-dark-text);
+        }
+
+        /* ==================
+           CUSTOM BOX BUILDER
+           ================== */
+        .custom-box-builder {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .custom-box-builder h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--color-dark-text);
+        }
+
+        .box-summary {
+            background-color: white;
+            border: 2px solid var(--color-orange);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-details, .box-stats, .box-nutrients {
+            text-align: left;
+            padding: 0 10px;
+            border-right: 1px solid #eee;
+        }
+        
+        .box-stats {
+            border-right: none;
+        }
+
+        .summary-details .meal-name {
+            font-size: 1.3rem;
+        }
+        
+        .summary-details .meal-description {
+            margin-top: -5px;
+        }
+
+        .box-stats p:first-child {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .total-price {
+            font-size: 2.2rem;
+            color: var(--color-orange);
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .box-nutrients {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+        
+        .box-nutrients p {
+            line-height: 1.1;
+        }
+
+        .box-actions button {
+            padding: 10px 20px;
+        }
+
+        .save-box {
+            background-color: var(--color-blue);
+            color: white;
+            margin-right: 10px;
+        }
+
+        .checkout {
+            background-color: var(--color-orange);
+            color: white;
+        }
+
+        /* ==================
+           FOOTER
+           ================== */
+        footer {
+            background-color: var(--color-dark-text); 
+            color: white;
+            padding: 30px 5%;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 20px;
+        }
+
+        .footer-logo img {
+            width: 80px;
+            filter: brightness(1.5); /* Lighten logo for dark background */
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+        }
+
+        .footer-links .heading {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--color-orange);
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .social-icons {
+            margin-top: 5px;
+        }
+        .social-icons i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: var(--color-orange);
+            cursor: pointer;
+        }
+
+        .dorm-bot {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: white;
+            color: var(--color-dark-text);
+            border-radius: 25px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
+        }
+
+        .dorm-bot i {
+            font-size: 1.2rem;
+            margin-left: 8px;
+            color: var(--color-orange);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-search">
+            <img src="dorm-diner-logo-small.png" alt="Dorm Diner Logo" class="small-logo">
+            <div class="search-bar">
+                <i class="fas fa-search" style="color:#777;"></i>
+                <input type="text" placeholder="Find your next craving...">
+            </div>
+        </div>
+        <div class="nav-links">
+            <i class="fas fa-shopping-cart"></i> <img src="dorm-diner-logo-small.png" alt="Profile" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 15px;"> <button class="sign-in">Sign In</button>
+            <button class="sign-up">Sign Up</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Fuel Your Study Sessions.</h1>
+                <p>Delicious, Nutritive Meals, Made for Students.</p>
+                <button class="hero-button">Build Your Own Box</button>
+            </div>
+        </section>
+
+        <section class="menu-tabs">
+            <nav>
+                <a href="#" class="active" data-category="all">All Items</a>
+                <a href="#" data-category="student">Student Eat</a>
+                <a href="#" data-category="ready">Ready Made</a>
+                <a href="#" data-category="build">Build Your Oyn</a>
+                <a href="#" data-category="premium">Premium</a>
+                <a href="#" data-category="healthy">Healthy & Light</a>
+            </nav>
+        </section>
+
+        <section class="menu-items">
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Creamy Mac</p>
+                    <p class="meal-price">£4.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Classic Beef Patty Heat</p>
+                    <p class="meal-price">£5.12</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Classic Beef Patty Heat</p>
+                    <p class="meal-price">£5.12</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Veggie Power Bowl</p>
+                    <p class="meal-price">£5.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Veggie Power Bowl</p>
+                    <p class="meal-price">£5.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Veggie Power Boat</p>
+                    <p class="meal-price">£8.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Mediterranean Phetos</p>
+                    <p class="meal-price">£5.59</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Pail 53 Viana Heat</p>
+                    <p class="meal-price">£5.10</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Veggie Power / Paaad</p>
+                    <p class="meal-price">£5.10</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Sate Streen Zos</p>
+                    <p class="meal-price">£3.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Veggle Tons Box</p>
+                    <p class="meal-price">£5.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Ton Viala Suaces</p>
+                    <p class="meal-price">£8.20</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 66.666%;">
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Mediterranean Phetos</p>
+                    <p class="meal-price">£5.59</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Pail 53 Viana Heat</p>
+                    <p class="meal-price">£5.10</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Veggie Power / Paaad</p>
+                    <p class="meal-price">£5.10</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="card-image-placeholder">[Meal Image]</div>
+                    <p class="meal-name">Sate Streen Zos</p>
+                    <p class="meal-price">£3.50</p>
+                    <span class="meal-description">Calories: 302, Prep: 2 min</span>
+                    <div class="card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="custom-box-builder">
+            <h2>Custom Box Builder</h2>
+            <div class="box-summary">
+                <div class="summary-details">
+                    <p class="meal-name">Culuies Slinte</p>
+                    <p class="meal-description">Calories: 302, Prep: 2 min, Ing: (30g, 83, 131)</p>
+                </div>
+                <div class="box-stats">
+                    <p>Total:</p>
+                    <p class="total-price">£18.49</p>
+                </div>
+                <div class="box-nutrients">
+                    <p>Calories: 830</p>
+                    <p>Protein: 56g</p>
+                    <p>Fats: 30g</p>
+                    <p>Carbs: 8g</p>
+                </div>
+                <div class="box-actions">
+                    <button class="save-box">Save Box</button>
+                    <button class="checkout">Coon Box</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="dorm-diner-logo-small.png" alt="Dorm Diner Logo">
+            </div>
+            <div class="footer-links">
+                <p class="heading">About Us</p>
+                <a href="#">About Us</a>
+                <a href="#">Eom and boctog</a>
+            </div>
+            <div class="footer-links">
+                <p class="heading">Help & Support</p>
+                <a href="#">Student Email Verification</a>
+                <a href="#">Goat tsato (food)</a>
+            </div>
+            <div class="footer-links">
+                <p class="heading">Legal</p>
+                <a href="#">Slabmit dbaal</a>
+                <a href="#">Vetdasboolool</a>
+            </div>
+            <div class="footer-links">
+                <p class="heading">Legal</p>
+                <a href="#">Rebel Security Guondom</a>
+                <div class="social-icons">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                </div>
+            </div>
+        </div>
+        <div class="dorm-bot">
+            <p>Dorm-Bot</p>
+            <i class="fas fa-robot"></i> </div>
+    </footer>
+
+    <script>
+        /* ==================
+           JAVASCRIPT (Placeholder for Interactivity)
+           ================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.menu-tabs nav a');
+            const menuGrid = document.querySelector('.menu-grid');
+
+            // --- Tab Navigation Placeholder ---
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Update active tab styling
+                    tabs.forEach(t => t.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    const category = e.target.getAttribute('data-category');
+                    console.log(`Filtering items for category: ${category}. (In a real app, this would load new content)`);
+                    
+                    // Add your actual content loading/filtering logic here
+                });
+            });
+
+            // --- Add to Cart Placeholder ---
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const itemName = button.closest('.menu-card').querySelector('.meal-name').textContent;
+                    alert(`${itemName} added to cart! (Requires backend logic)`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
