@@ -1,6 +1,39 @@
-/*formats the title of featured meals*/
-#featured-meals-title {
+/*container for image and text*/
+.slogan-section {
+  position: relative;
+}
+
+/*makes the image the whole width of the screen*/
+.slogan-section img {
+  width: 100%;
+  display: block;
+}
+
+/*formats the position of the text*/
+.slogan-section .slogan-text {
+  position: absolute;
+  top: 30%;
+  left: 13%;
+}
+
+/*Makes the link appear below the main text*/
+#slogan-menu-link {
+    margin-top: 8%;
+}
+
+.reviews-section {
+  background-color: bisque;
+  padding: 10px;
+}
+
+/*formats the title of reviews*/
+#reviews-title {
     display: flex;
     font-family: sans-serif;
     justify-content: center;
+}
+
+.reviews {
+  display: flex;
+  justify-content: center;
 }

@@ -1,4 +1,3 @@
-<!--Rufus-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,9 +13,9 @@
         <!--The header of the website which contains links to different parts of the website-->
         <header>
             <div class="header">
-                <a href="Home.html">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> 
+                <a href="Home.html">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> <!--Navigates the user to the home page-->
                 <form>
-                    <div class="search">
+                    <div class="search"> <!--Users can use this to search the website for meals-->
                         <span class="searchicon material-symbols-outlined">search</span>
                         <input class="searchinput" type="search" placeholder="Find your next craving...">
                     </div>
@@ -25,7 +24,7 @@
                     <div class="shopping-cart">
                         <a href="ShoppingBasket.html"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
                     </div>
-                    <a href="About-Us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> 
+                    <a href="About-Us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
                     <a href="SignIn" class="signin-header"> Sign In </a> <!--Placeholder URL and will add functionality to change the button to log out when signed in-->
                     <div class="profile-header">
                         <a href="Profile.html"> <span class="profileicon material-symbols-outlined">person</span> </a> <!--Placeholder URL-->
@@ -34,9 +33,19 @@
             </div>
         </header>
         <main>
-            <!--Will add an image with text under it to add more to the page-->
-            <h2 id="featured-meals-title">Featured Meals</h2>
-            <!--Will add a few meals under this-->
+            <div class="slogan-section">
+                <!--Will add an image behind this text-->
+                <img src="images/Home-background-image.png" alt="background image" id="backround-img1">
+                <h2 class="slogan-text">Student Meals, <br> Made Simple</h2>
+                <a href="menu" class="slogan-text" id="slogan-menu-link"><p>Browse Our Menu!</p></a><!--Placeholder URL-->
+            </div>
+            <!--Section to show off positive reviews-->
+            <div class="reviews-section">
+                <h2 id="reviews-title">Our Reviews</h2>
+                <p class="reviews">User 1 - "Fast, fresh, and flawlessly delivered, this service has completely transformed the way I order food."</p>
+                <p class="reviews">User 2 - “Every order arrives hot, and on time, making this my favourite app for meals.”</p>
+                <p class="reviews">User 3 - “A seamless experience, offering incredible convenience and consistently great meals.”</p>
+            </div>
         </main>
         <footer>
             <div class="footer-group">
@@ -45,7 +54,7 @@
             <p class="footer-p">B4 7ET</p>
             </div>
             <div class="footer-nav">
-            <a href="About-Us.html" class="footer-link"><p>About Us</p></a>
+            <a href="About-Us.html" class="footer-link"><p>About Us</p></a> <!--Navigates the user to the about us page-->
             <a href="staff-page" class="footer-link"><p>Staff Login</p></a> <!--Placeholder URL-->
             <a href="menu" class="footer-link"><p>Our Menu</p></a> <!--Placeholder URL-->
             </div>

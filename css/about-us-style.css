@@ -1,0 +1,16 @@
+main {
+    background-color: blanchedalmond;
+    padding: 20px;
+}
+
+.about-us-header {
+    display: flex;
+    font-family: sans-serif;
+    justify-content: center;
+}
+
+.values-header {
+    display: flex;
+    font-family: sans-serif;
+    justify-content: center;
+}

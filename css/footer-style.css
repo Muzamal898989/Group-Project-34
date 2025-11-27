@@ -1,7 +1,7 @@
 /*Rufus*/
 /*changes the colour of the footer*/
 footer {
-    background-color: #004aad;
+    background-color: grey;
     padding: 10px;
     display: flex;
     align-items: center;
