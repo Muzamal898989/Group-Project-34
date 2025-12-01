@@ -1,12 +1,24 @@
 main {
     background-color: blanchedalmond;
-    padding: 20px;
+    padding: 30px;
+}
+
+.who-are-we {
+    padding-top: 20px;
 }
 
 .about-us-header {
     display: flex;
     font-family: sans-serif;
     justify-content: center;
+}
+
+.w-a-w-text {
+    font-size: 15px;
+}
+
+.values {
+    padding-top: 50px;
 }
 
 .values-header {
