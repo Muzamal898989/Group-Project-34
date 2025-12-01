@@ -37,6 +37,12 @@ function registerUser() {
         return "<p style='color:red;'>Only student emails ending with aston.ac.uk are allowed.</p>";
     }
 
+    // Check if email already exists
+    $check = mysqli_query($db, "SELECT * FROM users WHERE email = '$email'");
+    if (mysqli_num_rows($check) > 0) {
+        return "<p style='color:red;'>Email already in use</p>";
+    }
+
     // Hash password securely
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
