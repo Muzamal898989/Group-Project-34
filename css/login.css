@@ -1,17 +1,15 @@
-/* ---------- LOGIN PAGE (diner look) ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   height: 100%;
   font-family: Arial, sans-serif;
-  background: #dec39b;          /* same warm beige as menu page */
+  background: #ddc299;          
   display: flex;
   flex-direction: column;
 }
 
-/* ---- header bar (matches menu header) ---- */
 #main-header {
-  background: #e6c38d;
+  background: #ddbb88;
   color: white;
   padding: 20px;
   text-align: center;
@@ -22,11 +20,11 @@ html, body {
   filter: drop-shadow(2px 2px 0 rgba(0,0,0,.15));
 }
 
-/* ---- card (same white / shadow as food cards) ---- */
+
 #login {
   background: white;
   border-radius: 10px;
-  overflow: hidden;              /* keeps image style consistent */
+  overflow: hidden;              
   box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
   max-width: 400px;
   width: 90%;
@@ -35,37 +33,36 @@ html, body {
 }
 
 #login h2 {
-  color: #c45f5f;               /* headline red = price-tag red */
+  color: #bb5b5b;
   margin-bottom: 25px;
   text-align: center;
   font-size: 1.6rem;
 }
 
-/* ---- inputs (same border colour as card shadow) ---- */
 .form-group {
   margin-bottom: 18px;
 }
 label {
   display: block;
   margin-bottom: 6px;
-  color: #5a3e2b;              /* coffee-brown */
+  color: #583d2a;
   font-weight: 600;
 }
 input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 10px 12px;
-  border: 2px solid #e6c38d;
+  border: 2px solid #e0be8a;
   border-radius: 6px;
-  background: #fff8ee;         /* oat background */
+  background: #fff8ef;
   font-size: 1rem;
 }
 input:focus {
   outline: none;
-  border-color: #c45f5f;
+  border-color: #b95959;
 }
 
-/* ---- button (same red as price tag) ---- */
+
 input[type="submit"] {
   width: 100%;
   padding: 12px;
@@ -79,25 +76,18 @@ input[type="submit"] {
   transition: background .25s;
 }
 input[type="submit"]:hover {
-  background: #e6c38d;
+  background: #ddbb88;
   color: #5a3e2b;
 }
 
-/* ---- link ---- */
-a { color: #c45f5f; font-weight: 600; }
-a:hover { color: #e6c38d; }
+a { color: #bb5a5a; font-weight: 600; }
+a:hover { color: #dfbd89; }
 
-/* ---- footer ---- */
 footer {
   margin-top: auto;
-  background: #333;
+  background: #313131;
   color: white;
   text-align: center;
   padding: 10px;
   font-size: .85rem;
-}
-
-/* ---- tiny screen tweak ---- */
-@media (max-width: 480px) {
-  #login { padding: 20px; }
 }

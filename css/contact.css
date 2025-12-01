@@ -1,0 +1,63 @@
+#contact-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+  max-width: 420px;
+  width: 90%;
+  margin: 3rem auto;
+  padding: 2rem;
+  position: relative;
+}
+#contact-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #e5c28c, #c55f5f, #e6c38d);
+}
+
+#contact-card h2 {
+  color: #bd5d5d;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 1px;
+  font-size: 1.8rem;
+}
+
+#contact-card textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#contact-card .extra {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: .9rem;
+  color: #5a3e2b;
+}
+
+
+#main-header img {
+  height: 48px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .2));
+}
+
+#contact-card button {
+  width: 100%;
+  padding: .65rem;
+  font-size: 1.2rem;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 1px;
+  background: #c26161;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .25s;
+}
+#contact-card button:hover {
+  background: #e2bf8a;
+  color: #5a3e2b;
+}

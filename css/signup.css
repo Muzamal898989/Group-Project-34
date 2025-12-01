@@ -6,15 +6,15 @@
 
 html, body {
   height: 100%;
-  background: #dec39b;
+  background: #d8be97;
   font-family: "Roboto", Arial, sans-serif;
-  color: #333;
+  color: #363636;
   display: flex;
   flex-direction: column;
 }
 
 #main-header {
-  background: #e6c38d;
+  background: #ddbb87;
   color: white;
   padding: 1rem;
   display: flex;
@@ -38,7 +38,7 @@ html, body {
   font-family: "Bebas Neue", cursive;
   font-size: 2.2rem;
   letter-spacing: 1.5px;
-  text-shadow: 1px 1px 0 #c45f5f;
+  text-shadow: 1px 1px 0 #bd5c5c;
 }
 
 #login, #signUp-form {
@@ -53,7 +53,7 @@ html, body {
 }
 
 #login h2, #signUp-form h2 {
-  color: #c45f5f;
+  color: #cc6363;
   margin-bottom: 1.5rem;
   text-align: center;
   font-family: "Bebas Neue", cursive;
@@ -67,7 +67,7 @@ html, body {
 
 label {
   font-weight: 700;
-  color: #5a3e2b;
+  color: #4d3424;
   font-size: .95rem;
 }
 
@@ -77,15 +77,15 @@ input[type="text"],
 input[type="date"] {
   width: 100%;
   padding: .6rem .8rem;
-  border: 2px solid #e6c38d;
+  border: 2px solid #e4bf88;
   border-radius: 6px;
-  background: #fff8ee;
+  background: #fcf4e9;
   font-size: 1rem;
 }
 
 input:focus {
   outline: none;
-  border-color: #c45f5f;
+  border-color: #b95a5a;
 }
 
 button, input[type="submit"] {
@@ -94,7 +94,7 @@ button, input[type="submit"] {
   font-size: 1.2rem;
   font-family: "Bebas Neue", cursive;
   letter-spacing: 1px;
-  background: #c45f5f;
+  background: #c45d5d;
   color: white;
   border: none;
   border-radius: 6px;
@@ -103,22 +103,22 @@ button, input[type="submit"] {
 }
 
 button:hover, input[type="submit"]:hover {
-  background: #e6c38d;
-  color: #5a3e2b;
+  background: #dbb985;
+  color: #5e412d;
 }
 
 a {
-  color: #c45f5f;
+  color: #bb5a5a;
   font-weight: 600;
 }
 
 a:hover {
-  color: #e6c38d;
+  color: #e4c08a;
 }
 
 footer {
   margin-top: auto;
-  background: #333;
+  background: #2e2e2e;
   color: white;
   text-align: center;
   padding: 10px;
@@ -135,7 +135,7 @@ footer {
 }
 
 #main-header{
-  background:#e6c38d;
+  background:#e5c28c;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -156,5 +156,5 @@ footer {
   font-size:2.2rem;
   letter-spacing:1.5px;
   color:#fff;
-  text-shadow:1px 1px 0 #c45f5f;
+  text-shadow:1px 1px 0 #be5e5e;
 }
