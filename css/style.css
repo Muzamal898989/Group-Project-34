@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-header {
+  background-color: #fef8ea;
+  color: #e6c38d;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+}
+header {
+    background-color: #fef8ea;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+}
+
+main {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+#login {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+#login h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+input[type="submit"] {
+  background-color: #34769f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #e6c38d;
+}
+
+a {
+  color: #e6c38d;
+  text-decoration: none;
+  text-align: center;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  #login {
+    padding: 20px;
+    width: 90%;
+  }
+
+  #main-header {
+    font-size: 1.2rem;
+  }
+}
+
+/* --- BASE STYLES --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dec39b; /* Light background */
+    color: #333;
+}
+
+.page-header {
+    background-color: #e6c38d; /* Primary brand color (blue) */
+    color:white; 
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- CATEGORY STYLES --- */
+.menu-category {
+    margin-bottom: 50px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.menu-category h2 {
+    font-size: 2em;
+    color: #c45f5f; /* Highlight category headers */
+    margin-bottom: 20px;
+    border-left: 5px solid #ffc107; /* Secondary accent color (yellow) */
+    padding-left: 10px;
+}
+
+/* --- MENU GRID LAYOUT --- */
+/* This creates a responsive grid for the menu items */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* --- INDIVIDUAL MENU ITEM STYLES --- */
+.menu-item {
+    display: block; /* Make the entire card clickable */
+    text-decoration: none; /* Remove underline from link */
+    color: #333;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px; /* Standardized height for images */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+}
+
+.item-details {
+    padding: 15px;
+    position: relative;
+}
+
+.item-details h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.item-details p {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0;
+}
+
+.item-price {
+    background-color: #c45f5f; 
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: -10px; /* Positioning the price tag slightly outside/above */
+    right: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- FOOTER STYLES --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #333;
+    color: white;
+    font-size: 0.8em;
+}
+
+/* --- Media Query for smaller screens --- */
+@media (max-width: 600px) {
+    .menu-grid {
+        grid-template-columns: 1fr; /* Stack items on very small screens */
+    }
+    .page-header h1 {
+        font-size: 1.8em;
+    }
+}
