@@ -31,10 +31,12 @@
   margin-top: 8%;
 }
 
+/*changes the colour of the hyperlink when hovered over*/
 #slogan-menu-link:hover {
   color: grey;
 }
 
+/*formats the reviews section*/
 .reviews-section {
   background-color: bisque;
   padding: 10px;
@@ -51,6 +53,7 @@
   font-weight: 400;
 }
 
+/*changes the position of the reviews*/
 .reviews {
   display: flex;
   justify-content: center;

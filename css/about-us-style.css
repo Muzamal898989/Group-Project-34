@@ -1,26 +1,32 @@
+/*changes the background of the about us section*/
 main {
     background-color: blanchedalmond;
     padding: 30px;
 }
 
+/*adds more padding to the top to fill more space on the page*/
 .who-are-we {
     padding-top: 20px;
 }
 
+/*changes the format of the about us title*/
 .about-us-header {
     display: flex;
     font-family: sans-serif;
     justify-content: center;
 }
 
+/*changes the size of the text*/
 .w-a-w-text {
     font-size: 15px;
 }
 
+/*adds more padding to the top to fill more space on the page*/
 .values {
     padding-top: 50px;
 }
 
+/*formats the values title*/
 .values-header {
     display: flex;
     font-family: sans-serif;
