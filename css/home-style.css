@@ -1,0 +1,57 @@
+/*container for image and text*/
+.slogan-section {
+  position: relative;
+}
+
+/*makes the image the whole width of the screen*/
+.slogan-section img {
+  width: 100%;
+  display: block;
+}
+
+/*formats the position of the text*/
+.slogan-section .slogan-text {
+  position: absolute;
+  top: 30%;
+  left: 13%;
+  font-family: "Google Sans Flex";
+  font-weight: 700;
+}
+
+/*Makes the link appear below the main text*/
+#slogan-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+  border-radius: 28px;
+  background: #ffffff;
+  margin-top: 8%;
+}
+
+#slogan-menu-link:hover {
+  color: grey;
+}
+
+.reviews-section {
+  background-color: bisque;
+  padding: 10px;
+  font-family: "Google Sans Flex";
+  font-weight: 400;
+}
+
+/*formats the title of reviews*/
+.reviews-title {
+  display: flex;
+  font-family: sans-serif;
+  justify-content: center;
+  font-family: "Google Sans Flex";
+  font-weight: 400;
+}
+
+.reviews {
+  display: flex;
+  justify-content: center;
+}
