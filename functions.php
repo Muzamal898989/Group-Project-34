@@ -3,7 +3,7 @@
 // Connect to the database
 function db_connect() {
     $connection = mysqli_connect("localhost", "root", "", "healthy_food_app");
-    
+
     if (!$connection) {
         die("Database connection failed: " . mysqli_connect_error());
     }
@@ -23,37 +23,49 @@ function verify_email($email) {
 function registerUser() {
     $db = db_connect();
 
-    $firstName = $_POST['firstName'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    // Get form values safely
+    $firstName = trim($_POST['firstName']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $confirmPassword = trim($_POST['confirmPassword']);
 
-    // Validate email format
+    // 1. Check required fields
+    if (empty($firstName) || empty($email) || empty($password) || empty($confirmPassword)) {
+        return "<p style='color:red;'>Please fill in all required fields.</p>";
+    }
+
+    // 2. Check password match
+    if ($password !== $confirmPassword) {
+        return "<p style='color:red;'>Passwords do not match.</p>";
+    }
+
+    // 3. Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return "<p style='color:red;'>Invalid email format.</p>";
     }
 
-    // Validate aston.ac.uk email
+    // 4. Validate .ac.uk domain
     if (!verify_email($email)) {
-        return "<p style='color:red;'>Only student emails ending with aston.ac.uk are allowed.</p>";
+        return "<p style='color:red;'>Only student emails ending with .ac.uk are allowed.</p>";
     }
 
-    // Check if email already exists
+    // 5. Check if email already exists
     $check = mysqli_query($db, "SELECT * FROM users WHERE email = '$email'");
     if (mysqli_num_rows($check) > 0) {
         return "<p style='color:red;'>Email already in use</p>";
     }
 
-    // Hash password securely
+    // 6. Hash password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert query
+    // 7. Insert user
     $sql_query = "INSERT INTO users (name, email, password, student_verified)
                   VALUES ('$firstName', '$email', '$hashedPassword', 1)";
 
     if (mysqli_query($db, $sql_query)) {
         return "<p style='color:green;'>Registered successfully!</p>";
     } else {
-        return "<p style='color:red;'>Error registering user: " . mysqli_error($db) . "</p>";
+        return "<p style='color:red;'>Error: " . mysqli_error($db) . "</p>";
     }
 }
 
@@ -61,8 +73,8 @@ function registerUser() {
 function loginUser() {
     $db = db_connect();
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -76,9 +88,7 @@ function loginUser() {
     if (mysqli_num_rows($result) === 1) {
         $user = mysqli_fetch_assoc($result);
 
-        // Verify hashed password
         if (password_verify($password, $user['password'])) {
-
             session_start();
             $_SESSION['email'] = $email;
 
