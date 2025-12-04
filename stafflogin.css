@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d7b98e;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left {
+    flex: 1;
+    padding: 40px;
+    color: #5a3b2e;
+}
+
+.left h1 {
+    font-size: 32px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.left p {
+    margin: 10px 0 20px;
+    font-size: 16px;
+}
+
+.left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left ul li {
+    margin: 8px 0;
+}
+
+.left ul li a {
+    text-decoration: none;
+    color: #c76a65;
+    font-weight: bold;
+}
+
+.left img {
+    border-radius: 10px;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right h2 {
+    margin-bottom: 20px;
+    color: #c76a65;
+    font-size: 26px;
+}
+
+#loginForm {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm input {
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 6px;
+    border: 2px solid #e8c9a1;
+    outline: none;
+    font-size: 15px;
+    color: #5a3b2e;
+}
+
+#loginForm input:focus {
+    border-color: #c76a65;
+}
+
+#loginForm button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #c76a65;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+#loginForm button:hover {
+    opacity: 0.9;
+}
+
+.message {
+    margin-top: 10px;
+    color: #5a3b2e;
+    font-weight: bold;
+}
