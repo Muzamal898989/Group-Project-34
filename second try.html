@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+// normal chatbot without the ai api keys 
+<html lang="en">
+<head>
+    *auto adjeustment to centre and can be used for all devices*
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DormDine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
+            background: rgb(134, 128, 128);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #b4adad;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: rgb(233, 232, 232);
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 80%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-message {
+            background: #c75c14;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 80%;
+            margin-left: auto;
+            text-align: right;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option-button {
+            background: #c45c16;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-button:hover {
+            background: #ff8540;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-button:active {
+            transform: translateY(0);
+        }
+
+        .back-button {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .back-button:hover {
+            background: #5a6268;
+        }
+
+        .food-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            border-left: 4px solid #ff9a56;
+        }
+
+        .food-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .food-calories {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .contact-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .step {
+            background: #fff3cd;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .step-number {
+            font-weight: bold;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    // main chat container //
+    <div class="chat-container">
+        <div class="chat-header">
+             DormDine chatbot Assistant
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+    </div>
+
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        
+        // all the food data which was used from meail.sql//
+        // descrption was given through with the help of ai//
+        const foodDatabase = {
+            highProtein: [
+                { name: 'Power Protein Bento', calories: 620, description: 'Grilled chicken, boiled eggs, quinoa, broccoli, nuts, berries', price: '£6.20', cuisine: 'Healthy' },
+                { name: 'Greek Island Bento', calories: 620, description: 'Chicken souvlaki skewers with lemon orzo salad, roasted vegetables, tzatziki, baklava', price: '£6.20', cuisine: 'Greek' },
+                { name: 'Protein Pancake Stack', calories: 420, description: 'Fluffy protein pancakes with vanilla whey protein, topped with yoghurt, syrup and berries', price: '£4.00', cuisine: 'Healthy' },
+                { name: 'Mediterranean Baked Salmon', calories: 560, description: 'Herb-crusted salmon with roasted potatoes, asparagus, tomatoes, lemon butter sauce', price: '£7.00', cuisine: 'Mediterranean' },
+                { name: 'Greek Souvlaki Box', calories: 620, description: 'Lamb skewers with Greek salad, tzatziki, hummus, pita bread, olives', price: '£6.20', cuisine: 'Greek' }
+            ],
+            lowCalorie: [
+                { name: 'Fruit Box', calories: 120, description: 'Fresh seasonal fruit pieces - apple, grapes, strawberries, melon, blueberries', price: '£2.50', cuisine: 'Healthy' },
+                { name: 'Veggie Spring Rolls', calories: 220, description: 'Crispy rolls packed with seasoned vegetables, served with sweet chilli dip', price: '£2.80', cuisine: 'Asian' },
+                { name: 'Gyoza Selection', calories: 240, description: 'Pan-fried dumplings filled with vegetables, served with soy dipping sauce', price: '£3.00', cuisine: 'Asian' },
+                { name: 'Energy Ball Mix', calories: 280, description: 'Bite-sized energy balls made from oats, dates, nuts, cocoa', price: '£2.50', cuisine: 'Healthy' },
+                { name: 'Apple Crumble Pot', calories: 280, description: 'Warm spiced apple compote topped with buttery crumble', price: '£3.20', cuisine: 'Dessert' }
+            ],
+            balanced: [
+                { name: 'Falafel and Hummus Bowl', calories: 520, description: 'Falafel balls on quinoa with hummus, salad, pickled veg, tahini drizzle', price: '£5.20', cuisine: 'Middle Eastern' },
+                { name: 'Vegan Rainbow Bento', calories: 520, description: 'Teriyaki tofu, brown rice, sweet potato, avocado, raw vegetables, tahini dressing', price: '£5.80', cuisine: 'Vegan' },
+                { name: 'Classic Japanese Bento', calories: 560, description: 'Teriyaki salmon and chicken with rice, beans, pickled vegetables, mandarin', price: '£6.00', cuisine: 'Japanese' },
+                { name: 'Korean BBQ Bento', calories: 580, description: 'Beef bulgogi with jasmine rice, kimchi, stir-fried vegetables, seaweed salad', price: '£6.00', cuisine: 'Korean' },
+                { name: 'Mushroom Risotto', calories: 580, description: 'Creamy arborio rice with mushrooms, white wine, parmesan, truffle oil', price: '£6.00', cuisine: 'Italian' }
+            ],
+            breakfast: [
+                { name: 'Berry Smoothie Bowl', calories: 380, description: 'Frozen berries blended with yoghurt, topped with granola and chia seeds', price: '£3.80', cuisine: 'Healthy' },
+                { name: 'Chia Pudding', calories: 380, description: 'Chia seeds soaked in milk, topped with mango, pineapple, coconut flakes and passion fruit', price: '£3.20', cuisine: 'Tropical' },
+                { name: 'Mediterranean Breakfast Wrap', calories: 390, description: 'Scrambled eggs, spinach, olives, feta, sun-dried tomatoes in a whole wheat wrap', price: '£4.50', cuisine: 'Mediterranean' },
+                { name: 'Tofu Scramble Box', calories: 420, description: 'Spiced tofu scramble with peppers, spinach, tomatoes, roasted potatoes and avocado', price: '£4.20', cuisine: 'Vegan' },
+                { name: 'Chocolate Protein Overnight Oats', calories: 450, description: 'Oats soaked in chocolate protein shake, topped with banana chips, blueberries, peanut butter and cacao nibs', price: '£3.50', cuisine: 'Healthy' }
+            ],
+            lunch: [
+                { name: 'Peri-Peri Chicken Wrap', calories: 480, description: 'Spicy grilled chicken with lettuce, tomato, onion and peri-peri mayo', price: '£5.00', cuisine: 'Portuguese' },
+                { name: 'Cajun Chicken Pasta', calories: 640, description: 'Penne pasta in creamy Cajun sauce with grilled chicken, peppers, parmesan', price: '£6.40', cuisine: 'American' },
+                { name: 'Chicken Fajita Bowl', calories: 640, description: 'Seasoned chicken strips with peppers, rice, beans, salsa, sour cream, cheese, tortilla chips', price: '£6.40', cuisine: 'Mexican' },
+                { name: 'Chicken Katsu Curry', calories: 680, description: 'Crispy breaded chicken cutlet with Japanese curry sauce, jasmine rice, pickled vegetables', price: '£6.80', cuisine: 'Japanese' },
+                { name: 'Chicken Pesto Pasta', calories: 680, description: 'Fusilli pasta with grilled chicken, basil pesto, sun-dried tomatoes, pine nuts, parmesan', price: '£6.80', cuisine: 'Italian' }
+            ],
+            dinner: [
+                { name: 'Paneer Tikka Masala', calories: 680, description: 'Grilled paneer cubes in creamy tomato tikka masala sauce with basmati rice', price: '£6.80', cuisine: 'Indian' },
+                { name: 'Sticky Teriyaki Chicken Bowl', calories: 680, description: 'Glazed teriyaki chicken thighs with jasmine rice, stir-fried vegetables, edamame', price: '£7.20', cuisine: 'Asian' },
+                { name: 'Lamb Biryani', calories: 720, description: 'Fragrant basmati rice layered with spiced lamb, onions, saffron, served with raita', price: '£7.20', cuisine: 'Indian' },
+                { name: 'Butter Chicken', calories: 740, description: 'Tender chicken in creamy tomato-butter sauce with basmati rice and naan', price: '£7.40', cuisine: 'Indian' }
+            ]
+        };
+
+        // function to add messages to the chat , this was collected from youtube as there were some erros which needed to be fixed// 
+        function addMessage(text, isBot = true) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.innerHTML = `<div class="${isBot ? 'bot-message' : 'user-message'}">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addOptions(options) {
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'message';
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options';
+            
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-button';
+                button.textContent = option.text;
+                button.onclick = option.action;
+                optionsContainer.appendChild(button);
+            });
+            
+            optionsDiv.appendChild(optionsContainer);
+            chatMessages.appendChild(optionsDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showMainMenu() {
+            addMessage("What can I help you with today?");
+            addOptions([
+                { text: 'Calculate Calories', action: showCalorieOptions },
+                { text: 'Find Support', action: showSupportOptions },
+                { text: 'Cancel Membership', action: showCancelSteps },
+                { text: 'Help with Selecting Food', action: showFoodHelp }
+            ]);
+        }
+
+        function showCalorieOptions() {
+            addMessage("Calculate Calories", false);
+            addMessage("What would you like to explore?");
+            addOptions([
+
+
+                { text: 'High Protein Meals', action: () => showFoodList('highProtein') },
+
+                { text: '            Low Calorie Meals (Under 300)', action: () => showFoodList('lowCalorie') },
+
+
+                { text: 
+                    'Balanced Meals (400-600 cal)', action: () => showFoodList('balanced') },
+                { text: ' Breakfast Options', action: () => showFoodList('breakfast') },
+                { text: ' Lunch Options', action: () => showFoodList('lunch') },
+                { text: ' Dinner Options', action: () => showFoodList('dinner') },
+                { text: '⬅ Back to Main Menu', action: showMainMenu }
+            ]);
+        }
+
+        function showFoodList(category) {
+            const categoryNames = {
+                highProtein: 'High Protein Meals',
+                lowCalorie: 'Low Calorie Meals (Under 300)',
+                balanced: 'Balanced Meals (400-600 cal)',
+                breakfast: 'Breakfast Options',
+                lunch: 'Lunch Options',
+                dinner: 'Dinner Options'
+            };
+            
+            addMessage(categoryNames[category], false);
+            
+            // these options were coopied from another site??
+            let foodListHTML = '<div style="margin-top: 10px;">';
+            foodDatabase[category].forEach(food => {
+                foodListHTML += `
+                    <div class="food-item">
+                        <div class="food-name">${food.name}</div>
+                        <div style="color: #666; font-size: 13px; margin: 5px 0;">${food.description}</div>
+                        <div class="food-calories">
+                            <strong>${food.calories} kcal</strong> | ${food.price} | ${food.cuisine}
+                        </div>
+                    </div>
+                `;
+            });
+            foodListHTML += '</div>';
+            
+            addMessage(foodListHTML);
+            addMessage("Would you like to see more options?");
+            addOptions([
+                { text: 'View Other Categories', action: showCalorieOptions },
+                { text: ' Main Menu', action: showMainMenu }
+            ]);
+        }
+
+        function showSupportOptions() {
+            addMessage("Find Support", false);
+            addMessage("How would you like to contact our support team?");
+            addOptions([
+                { text: '📧 Email Support', action: showEmailSupport },
+                { text: '📞 Phone Support', action: showPhoneSupport },
+                { text: '⬅️ Back to Main Menu', action: showMainMenu }
+            ]);
+        }
+
+        function showEmailSupport() {
+            addMessage("Email Support", false);
+            addMessage(`
+                <div class="contact-info">
+                    <strong> Email Support</strong><br><br>
+                    You can reach us at:<br>
+                    <strong>dormdine@aston.ac.uk</strong><br><br>
+                    We typically respond within 24 hours during business days.
+                </div>
+            `);
+            addMessage("Is there anything else I can help you with?");
+            addOptions([
+                { text: '📞 View Phone Support', action: showPhoneSupport },
+                { text: '🏠 Main Menu', action: showMainMenu }
+            ]);
+        }
+
+        function showPhoneSupport() {
+            addMessage("Phone Support", false);
+            addMessage(`
+                <div class="contact-info">
+                    <strong> Phone Support</strong><br><br>
+                    Call us at:<br>
+                    <strong>0123 456 789</strong><br><br>
+                    Available Monday-Friday: 9am-5pm<br>
+                    Saturday: 10am-2pm
+                </div>
+            `);
+            addMessage("Is there anything else I can help you with?");
+            addOptions([
+                { text: ' View Email Support', action: showEmailSupport },
+                { text: ' Main Menu', action: showMainMenu }
+            ]);
+        }
+
+        function showCancelSteps() {
+            addMessage("Cancel Membership", false);
+            addMessage("I'm sorry to hear you want to cancel. Here's a step-by-step guide:");
+            addMessage(`
+                <div class="step">
+                    <div class="step-number">Step 1:</div>
+                    Log in to your DormDine account using your credentials
+                </div>
+                <div class="step">
+                    <div class="step-number">Step 2:</div>
+                    Navigate to the Settings menu (usually found in the top right corner)
+                </div>
+                <div class="step">
+                    <div class="step-number">Step 3:</div>
+                    Select "Membership" from the settings options
+                </div>
+                <div class="step">
+                    <div class="step-number">Step 4:</div>
+                    Click on "Cancel Membership" button and follow the confirmation prompts
+                </div>
+            `);
+            
+            setTimeout(() => {
+                addMessage("Did this help you?");
+                addOptions([
+                    { text: 'Yes, that helped!', action: () => {
+                        addMessage("Yes, that helped!", false);
+                        addMessage("Great! We're sad to see you go, but we're glad we could help. If you need anything else in the future, feel free to reach out!");
+                        addOptions([
+                            { text: ' Main Menu', action: showMainMenu }
+                        ]);
+                    }},
+                    { text: 'No, I need more help', action: () => {
+                        addMessage("No, I need more help", false);
+                        addMessage("I understand. Let me connect you with our support team who can assist you further with the cancellation process.");
+                        showSupportOptions();
+                    }}
+                ]);
+            }, 500);
+        }
+
+        function showFoodHelp() {
+            addMessage("Help with Selecting Food", false);
+            addMessage(`
+                I can help you choose the right food! Here are some ways I can assist:<br><br>
+                <strong>By Dietary Goal:</strong> Whether you're looking to build muscle, lose weight, or maintain a balanced diet<br><br>
+                <strong> By Calorie Range:</strong> Find foods that fit your daily calorie budget<br><br>
+                <strong> By Macronutrients:</strong> Focus on protein, carbs, or healthy fats<br><br>
+                Would you like to explore our calorie calculator to get started?
+            `);
+            addOptions([
+                { text: 'Yes, Show Calorie Options', action: showCalorieOptions },
+                { text: ' Contact Support for Personalized Help', action: showSupportOptions },
+                { text: ' Main Menu', action: showMainMenu }
+            ]);
+        }
+
+        // Initialize chatbot
+        addMessage("Hello! Welcome to DormDine! by aston group-project-34. ");
+        setTimeout(showMainMenu, 500);
+    </script>
+</body>
+</html>
