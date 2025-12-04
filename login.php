@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Login – Dorm Diner</title>
+  <title>Login - Dorm Diner</title>
   <link rel="stylesheet" href="css/login.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" value="Login" class="btn btn-primary">
       </div>
       <div class="form-group">
-        <p>Don't have an account? <a href="signUp.html">Sign Up Here</a></p>
+        <p>Don't have an account? <a href="signUp.php">Sign Up Here</a></p>
       </div>
     </form>
   </section>

@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Sign Up – Dorm Diner</title>
+  <title>Sign Up - Dorm Diner</title>
   <link rel="stylesheet" href="css/signup.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label><input type="checkbox" name="notificationType" value="email"> Receive Email notifications</label>
       </div>
       <button type="submit" class="btn btn-primary">Register</button>
+      <p>Already have an account? <a href="login.php">Login Here</a></p>
     </form>
   </section>
 </main>
