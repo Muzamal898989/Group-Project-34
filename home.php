@@ -16,7 +16,7 @@
         <!--The header of the website which contains links to different parts of the website-->
         <header>
             <div class="header">
-                <a href="Home.html">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> <!--Navigates the user to the home page-->
+                <a href="home.php">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> <!--Navigates the user to the home page-->
                 <form class="search" method = "get" action="search.php"> <!--Users can use this to search the website for meals-->
                     <span class="searchicon material-symbols-outlined">search</span>
                     <input class="searchinput" type="search" name="search" placeholder="Find your next craving..." required>
@@ -24,9 +24,9 @@
                 </form>
                 <nav class="header-nav">
                     <div class="shopping-cart">
-                        <a href="ShoppingBasket.html"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
+                        <a href="basket.php"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
                     </div>
-                    <a href="About-Us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
+                    <a href="About_us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
                     <a href="login.php" class="signin-header"> Log In </a> <!--Placeholder URL and will add functionality to change the button to log out when signed in-->
                     <div class="profile-header">
                         <a href="Profile.html"> <span class="profileicon material-symbols-outlined">person</span> </a> <!--Placeholder URL-->
@@ -37,9 +37,9 @@
         <main>
             <!--The first section of the home page which shows an image, slogan and link to the menu-->
             <div class="slogan-section">
-                <img src="images/Home-background-image.png" alt="background image" id="backround-img1">
+                <img src="images/home-background-image.png" alt="background image" id="backround-img1">
                 <h2 class="slogan-text">Student Meals, <br> Made Simple</h2>
-                <a href="menu.html" class="slogan-text" id="slogan-menu-link">Browse Our Menu!</a><!--Placeholder URL-->
+                <a href="menu.php" class="slogan-text" id="slogan-menu-link">Browse Our Menu!</a><!--Placeholder URL-->
             </div>
             <!--Section to show off positive reviews-->
             <div class="reviews-section">
