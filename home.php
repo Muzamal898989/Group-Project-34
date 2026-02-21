@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,12 +27,15 @@
                 </form>
                 <nav class="header-nav">
                     <div class="shopping-cart">
-                        <a href="basket.php"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
-                    </div>
+                        <a href="basket.php"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> 
                     <a href="About_us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
-                    <a href="login.php" class="signin-header"> Log In </a> <!--Placeholder URL and will add functionality to change the button to log out when signed in-->
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="logout.php" class="signin-header">Logout</a>
+                    <?php else: ?>
+                    <a href="login.php" class="signin-header">Sign In</a>
+                    <?php endif; ?>
                     <div class="profile-header">
-                        <a href="Profile.html"> <span class="profileicon material-symbols-outlined">person</span> </a> <!--Placeholder URL-->
+                        <a href="user_dashboard.php"> <span class="profileicon material-symbols-outlined">person</span> </a> 
                     </div>
                 </nav>
             </div>
@@ -57,10 +63,10 @@
             <p class="footer-p">B4 7ET</p>
             </div>
             <div class="footer-nav">
-            <a href="About-Us.html" class="footer-link"><p>About Us</p></a> <!--Navigates the user to the about us page-->
+            <a href="About-us.php" class="footer-link"><p>About Us</p></a> <!--Navigates the user to the about us page-->
             <a href="admin_login.php" class="footer-link"><p>Staff Login</p></a> <!--Placeholder URL-->
-            <a href="menu.html" class="footer-link"><p>Our Menu</p></a> <!--Placeholder URL-->
-            <a href="logout.php" class="footer-link"><p>Log Out</p></a> <!--Logs out the user-->
+            <a href="menu.php" class="footer-link"><p>Our Menu</p></a> <!--Placeholder URL-->
+            <a href="logout.php" class="footer-link"><p>Help & Support</p></a> <!--Directs user to chatbot-->
             </div>
             <img src="images/DormDinerLogo.jpg" alt="Logo" class="footer-logo">
         </footer>

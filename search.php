@@ -3,10 +3,38 @@ session_start();
 if (isset($_GET['submitted'])){
     require_once('config/connectdb.php');
 
-    $name = $_GET['search'];
+    $name = $_GET['search'] ?? '';
+    $filter = $_GET['filter'] ?? 'relevance';
+    $category = $_GET['categories'] ?? 'all_categories';
 
-    $statement = $db->prepare("SELECT * FROM meals WHERE name LIKE ?");
-    $statement->execute(["%$name%"]);
+    $sql = "SELECT * FROM meals WHERE name LIKE ?";
+    $parameters = ["%$name%"];
+
+    if ($category !== 'all_categories') {
+    $sql .= " AND category = ?";
+    $parameters[] = $category;
+    }
+
+    switch ($filter) {
+        case 'price_low_to_high':
+            $sql .= " ORDER BY price ASC";
+        break;
+
+        case 'price_high_to_low':
+            $sql .= " ORDER BY price DESC";
+        break;
+
+        case 'calories_low_to_high':
+            $sql .= " ORDER BY calories ASC";
+        break;
+
+        case 'calories_high_to_low':
+            $sql .= " ORDER BY calories DESC";
+        break;
+    }
+
+    $statement = $db->prepare($sql);
+    $statement->execute($parameters);
     $recipes = $statement->fetchAll();    
 
     if (!$recipes) {
@@ -34,7 +62,7 @@ if (isset($_GET['submitted'])){
                 <a href="home.php">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> <!--Navigates the user to the home page-->
                 <form class="search" method = "get" action="search.php"> <!--Users can use this to search the website for meals-->
                     <span class="searchicon material-symbols-outlined">search</span>
-                    <input class="searchinput" type="search" name="search" placeholder="Find your next craving..." required>
+                    <input class="searchinput" type="search" name="search" placeholder="Find your next craving..." value="<?= htmlspecialchars($name ?? '') ?>" required>
                     <input type="hidden" name="submitted" value="true"/>
                 </form>
                 <nav class="header-nav">
@@ -42,7 +70,11 @@ if (isset($_GET['submitted'])){
                         <a href="ShoppingBasket.html"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
                     </div>
                     <a href="About-Us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
-                    <a href="login.php" class="signin-header"> Log In </a> <!--Placeholder URL and will add functionality to change the button to log out when signed in-->
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="logout.php" class="signin-header">Logout</a>
+                    <?php else: ?>
+                    <a href="login.php" class="signin-header">Sign In</a>
+                    <?php endif; ?>
                     <div class="profile-header">
                         <a href="Profile.html"> <span class="profileicon material-symbols-outlined">person</span> </a> <!--Placeholder URL-->
                     </div>
@@ -51,13 +83,34 @@ if (isset($_GET['submitted'])){
         </header>
         <?php if (isset($recipes)): ?>
             <h2 id="search-header">Search Results:</h2>
+            <form class= "filter_search" method= "get" action= "search.php">
+                <input type="hidden" name="submitted" value="true">
+                <input type="hidden" name="search" value="<?= htmlspecialchars($name ?? '') ?>">
+                <select name="filter" id="filter_options" onchange="this.form.submit()">
+                    <option value="relevance" <?= ($filter ?? '') === 'relevance' ? 'selected' : '' ?>>Sort By: Relevance</option>
+                    <option value="price_low_to_high" <?= ($filter ?? '') === 'price_low_to_high' ? 'selected' : '' ?>>Sort By: Price (Low to High)</option>
+                    <option value="price_high_to_low" <?= ($filter ?? '') === 'price_high_to_low' ? 'selected' : '' ?>>Sort By: Price (High to Low)</option>
+                    <option value="calories_low_to_high" <?= ($filter ?? '') === 'calories_low_to_high' ? 'selected' : '' ?>>Sort By: Calories (Low to High)</option>
+                    <option value="calories_high_to_low" <?= ($filter ?? '') === 'calories_high_to_low' ? 'selected' : '' ?>>Sort By: Calories (High to Low)</option>
+                </select>
+        
+                <select name= "categories" id="category_options" onchange="this.form.submit()">
+                    <option value="all_categories" <?= ($category ?? '') === 'all_categories' ? 'selected' : '' ?>>All Categories</option>
+                    <option value="breakfast" <?= ($category ?? '') === 'breakfast' ? 'selected' : '' ?>>Breakfast</option>
+                    <option value="lunch" <?= ($category ?? '') === 'lunch' ? 'selected' : '' ?>>Lunch</option>
+                    <option value="dinner" <?= ($category ?? '') === 'dinner' ? 'selected' : '' ?>>Dinner</option>
+                    <option value="snack" <?= ($category ?? '') === 'snack' ? 'selected' : '' ?>>Snack</option>
+                    <option value="dessert" <?= ($category ?? '') === 'dessert' ? 'selected' : '' ?>>Dessert</option>
+                    <option value="bento" <?= ($category ?? '') === 'bento' ? 'selected' : '' ?>>Bento</option>
+                </select>
+            </form>
             <?php if (!empty($recipes)): ?>
                 <?php foreach ($recipes as $recipe): ?>
                     <?= htmlspecialchars($recipe['name']) ?><br>
                     <?= htmlspecialchars($recipe['category']) ?><br>
                     <?= htmlspecialchars($recipe['calories']) ?><br>
                     <?= htmlspecialchars($recipe['description']) ?><br>
-                    <a href="meal.php?id=<?= $recipe['meal_id'] ?>">View</a>
+                    <a href="meal.php?id=<?= $recipe['meal_id'] ?>">View</a><br><br>
                 <?php endforeach; ?>
             <?php endif; ?>
         <?php endif; ?>

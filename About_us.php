@@ -1,0 +1,86 @@
+<?php 
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Links CSS, icons and fonts to the page-->
+        <title>About Us</title>
+        <link rel="icon" type="image/png" href="images/favicon.png">
+        <link rel = "stylesheet" type="text/css" href="css/header-style.css" />
+        <link rel = "stylesheet" type="text/css" href="css/about-us-style.css"/>
+        <link rel = "stylesheet" type="text/css" href="css/footer-style.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person,search,shopping_cart" />
+    </head>
+    <body>
+        <!--The header of the website which contains links to different parts of the website-->
+        <header>
+            <div class="header">
+                <a href="home.php">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> 
+                <form class="search" method = "get" action="search.php"> <!--Users can use this to search the website for meals-->
+                    <span class="searchicon material-symbols-outlined">search</span>
+                    <input class="searchinput" type="search" name="search" placeholder="Find your next craving..." required>
+                    <input type="hidden" name="submitted" value="true"/>
+                </form>
+                <nav class="header-nav">
+                    <div class="shopping-cart">
+                        <a href="ShoppingBasket.html"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
+                    </div>
+                    <a href="About_us.php"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Placeholder URL-->
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="logout.php" class="signin-header">Logout</a>
+                    <?php else: ?>
+                    <a href="login.php" class="signin-header">Sign In</a>
+                    <?php endif; ?>
+                    <div class="profile-header">
+                        <a href="user_dashboard.php"> <span class="profileicon material-symbols-outlined">person</span> </a> <!--Placeholder URL-->
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <!-- Short paragraph describing who the company is-->
+            <div class="who-are-we">
+                <h1 class="about-us-header">Who Are We?</h1>
+                <p class="w-a-w-text">Dorm Diner is a food delivery service created specifically for campus life.
+                    Our mission is to make good food more accessible and affordable for students, 
+                    whether you’re cramming for exams, running between classes, or just craving a late-night snack.
+                    Built by students, for students, we partner with local eateries and campus favorites to bring fast, 
+                    reliable delivery right to your dorm or study spot. We get student life 
+                    and we’re here to make it a little easier (and a lot tastier).
+                </p>
+            </div>
+            <!--Section which shows the values of the company-->
+            <div class="values">
+                <h1 class="values-header">Our Values</h1>
+                <ul class="values-text">
+                    <li><p><b>Afforability Matters</b> - We believe good food shouldn't break your budget. 
+                    Thats why we offer student friendly prices so that you don't stay hungry.</p></li>
+                    <li><p><b>Quality You Can Trust</b> - All of our kitchens have a 5 (Very Good) 
+                    rating from the Food Standards Agency so that you can have peace of mind when eating our food. </p></li>
+                    <li><p><b>Convenience You Can Count On</b> - We're committed to making food ordering effortless so that you can 
+                    focus on what matters.</p></li>
+                    <li><p><b>Sustainability</b> - We aim to reduce waste by making all of our packaging recyclable.</p></li>
+                    <li><p><b>Growing Together</b> - We listen to feedback and continously improve. 
+                    Your ideas shape our platform, and together we're building the perfect food ordering experience for students.</p></li>
+                </ul>
+            </div>
+        </main>
+        <!--Footer which contains links, logo and business address-->
+        <footer>
+            <div class="footer-group">
+            <h3 class="footer-h3">Dorm Diner</h3>
+            <p class="footer-p">Aston University, Birmingham</p>
+            <p class="footer-p">B4 7ET</p>
+            </div>
+            <div class="footer-nav">
+            <a href="home.php" class="footer-link"><p>Home</p></a> <!--Navigates the user to the Home page-->
+            <a href="admin_login.php" class="footer-link"><p>Staff Login</p></a> <!--Placeholder URL-->
+            <a href="menu.php" class="footer-link"><p>Our Menu</p></a> <!--Placeholder URL-->
+            <a href="logout.php" class="footer-link"><p>Log Out</p></a> <!--Logs out the user-->
+            </div>
+            <img src="images/DormDinerLogo.jpg" alt="Logo" class="footer-logo">
+        </footer>
+    </body>
+</html>
