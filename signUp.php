@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
             <h1>Register Here for Dorm Diner Meals</h1>
         </div>
         <nav>
-            <a href="Home.html" class="btn btn-secondary">Home</a>
+            <a href="Home.php" class="btn btn-secondary">Home</a>
             <a href="contact.html" class="btn btn-secondary">Contact</a>
             <a href="login.php" class="btn btn-secondary">Login</a>
         </nav>

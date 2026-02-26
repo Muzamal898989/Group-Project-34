@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	echo "<h1>Order placed successfully!</h1>";
 	echo "<p>You have been logged out for security reasons.</p>";
-	echo "<p><a href='login.php'>Log in again</a> or <a href='Home.html'>Return to homepage</a></p>";
+	echo "<p><a href='login.php'>Log in again</a> or <a href='Home.php'>Return to homepage</a></p>";
 	exit;	
 }
 ?>

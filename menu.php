@@ -78,7 +78,7 @@ include __DIR__ . '/config/db.php';
         <?php renderCategory($pdo, "dessert", "Snacks"); ?>
 
         <br><br>
-        <a href="Home.html" style="text-decoration:none; color:#333; font-weight:bold;">
+        <a href="Home.php" style="text-decoration:none; color:#333; font-weight:bold;">
             Back to Homepage
         </a>
 

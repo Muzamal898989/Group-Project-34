@@ -9,8 +9,6 @@ if(!isset($_SESSION['admin_logged_in'])){
 
 include 'config/db.php';
 
-
-
 //swicth back to admin from customer
 unset($_SESSION['view_mode']);
 

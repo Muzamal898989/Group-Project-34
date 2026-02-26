@@ -9,7 +9,7 @@ if(!isset($_SESSION['admin_logged_in'])){
 
 if($_POST['mode'] == 'customer'){
    $_SESSION['view_mode'] = 'customer';
-    header("location: index.php");//homepage?
+    header("location: Home.php");//homepage?
     exit();
 }
 

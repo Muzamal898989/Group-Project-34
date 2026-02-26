@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+$isAdminViewingCustomer = 
+    isset($_SESSION['admin_logged_in']) &&
+    isset($_SESSION['view_mode']) &&
+    $_SESSION['view_mode'] === 'customer';
+?>
+
+/* customer mode banner  */
+<?php if ($isAdminViewingCustomer): ?>
+    <div style="background: #f8d110; padding:15px; text-align:center; border-bottom: 1px solid #ccc;">
+        <strong>You are currently viewing the site as a CUSTOMER (Admin Mode)</strong>
+
+        <form action="exit_customer_mode.php" method="post" style="display:inline;">
+            <button type="submit" 
+                    style="margin-left:15px; padding:6px 12px; background:#dc3545; color:white; border:none; border-radius:4px; cursor:pointer;">
+                Return to Admin Dashboard
+            </button>
+        </form>
+    </div>
+<?php endif; ?>
 <!DOCTYPE html>
 <html>
 
@@ -88,5 +110,6 @@
         <img src="images/DormDinerLogo.jpg" alt="Logo" class="footer-logo">
     </footer>
 </body>
+
 
 </html>
