@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dorm Diner – Wishlist</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+nav a {
+    margin-right: 10px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+button {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<h1>Dorm Diner</h1>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="basket.html">Basket</a>
+</nav>
+<h2>Your Wishlist</h2>
+<div id="wishlist"></div>
+<br>
+<button onclick="clearWishlist()">Clear Wishlist</button>
+<script src="wishlist.js"></script>
+const WISHLIST_KEY = "dormWishlist";
+const BASKET_KEY = "basketItems"; 
+function loadWishlist() {
+    return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+}
+function saveWishlist(data) {
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(data));
+}
+function addToBasketFromWishlist(name, price) {
+    let basket = JSON.parse(localStorage.getItem(BASKET_KEY)) || [];
+    basket.push({ name, price });
+    localStorage.setItem(BASKET_KEY, JSON.stringify(basket));
+    removeFromWishlist(name);
+}
+function removeFromWishlist(name) {
+    const updated = loadWishlist().filter(i => i.name !== name);
+    saveWishlist(updated);
+    renderWishlist();
+}
+function clearWishlist() {
+    saveWishlist([]);
+    renderWishlist();
+}
+function renderWishlist() {
+    const container = document.getElementById("wishlist");
+    const list = loadWishlist();
+    if (list.length === 0) {
+        container.innerHTML = "<p>Your wishlist is empty.</p>";
+        return;
+    }
+    container.innerHTML = list.map(item => `
+        <div class="row">
+            <div>
+                <strong>${item.name}</strong><br>
+                £${Number(item.price).toFixed(2)}
+            </div>
+            <div>
+                <button onclick="addToBasketFromWishlist('${item.name}', ${item.price})">
+                    Move to Basket
+                </button>
+                <button onclick="removeFromWishlist('${item.name}')">
+                    Remove
+                </button>
+            </div>
+        </div>
+    `).join("");
+}
+renderWishlist();
+</script>
+</body>
+</html>

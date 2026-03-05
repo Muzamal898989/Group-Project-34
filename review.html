@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dorm Diner - Reviews</title>
+
+<link rel="stylesheet" href="reviews.css">
+</head>
+
+<body>
+
+<header>
+<h1>Dorm Diner Reviews</h1>
+</header>
+
+<section class="review-form">
+
+<h2>Leave a Review</h2>
+
+<input type="text" id="name" placeholder="Your name">
+
+<select id="rating">
+<option value="">Rating</option>
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="comment" placeholder="Write your review"></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+
+</section>
+
+
+<section class="reviews-list">
+
+<h2>Customer Reviews</h2>
+
+<div id="reviewsContainer">
+
+<!-- Reviews appear here -->
+
+</div>
+
+</section>
+
+
+<script src="reviews.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* Dorm Diner – Wishlist (clean, simple styling) */
+
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --accent:#2563eb;
+  --accent-dark:#1d4ed8;
+  --danger:#dc2626;
+  --danger-dark:#b91c1c;
+  --shadow:0 10px 25px rgba(0,0,0,.08);
+  --radius:14px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 28px;
+}
+
+h1{
+  margin: 0 0 10px;
+  font-size: 28px;
+}
+
+h2{
+  margin: 18px 0 12px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+/* Nav */
+nav{
+  margin: 8px 0 18px;
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+}
+
+nav a{
+  text-decoration:none;
+  color: var(--accent);
+  background: #eef2ff;
+  border: 1px solid #e0e7ff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+nav a:hover{
+  background:#e0e7ff;
+}
+
+/* Wishlist container */
+#wishlist{
+  max-width: 720px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 10px 14px;
+}
+
+/* Row */
+.row{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 14px;
+  padding: 12px 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.row:last-child{
+  border-bottom: 0;
+}
+
+.row strong{
+  font-size: 15px;
+}
+
+.row div:first-child{
+  line-height: 1.35;
+}
+
+.row div:first-child br + *{
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Buttons */
+button{
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover{
+  background: #f3f4f6;
+}
+
+/* Target action buttons inside each row */
+.row button:first-child{
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: var(--accent-dark);
+}
+
+.row button:first-child:hover{
+  background: #dbeafe;
+}
+
+/* Remove button inside row */
+.row button:last-child{
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: var(--danger-dark);
+}
+
+.row button:last-child:hover{
+  background: #fee2e2;
+}
+
+/* Clear Wishlist button (bottom one) */
+body > button{
+  margin-top: 14px;
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #ca4444;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+body > button:hover{
+  background: var(--danger-dark);
+  border-color: var(--danger-dark);
+}
+
+/* Empty message */
+#wishlist p{
+  margin: 10px 6px;
+  color: var(--muted);
+}
