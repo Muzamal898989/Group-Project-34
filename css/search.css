@@ -1,0 +1,56 @@
+.search-header {
+    padding: 10px;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.menu-item {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.item-details {
+  padding: 15px;
+  position: relative;
+  /* Added padding for the absolutely positioned price/button group */
+  padding-bottom: 30px;
+}
+
+.item-details h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+.item-details p {
+  font-size: 0.9em;
+  color: #555;
+  margin: 0;
+}
+
+

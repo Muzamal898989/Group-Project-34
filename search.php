@@ -50,7 +50,7 @@ if (isset($_GET['submitted'])){
         <link rel="icon" type="image/png" href="images/favicon.png">
         <link rel = "stylesheet" type="text/css" href="css/header-style.css" />
         <link rel = "stylesheet" type="text/css" href="css/footer-style.css" />
-        <link rel = "stylesheet" type="text/css" href="css/search-style.css" />
+        <link rel = "stylesheet" type="text/css" href="css/search.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person,search,shopping_cart" />
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +67,7 @@ if (isset($_GET['submitted'])){
                 </form>
                 <nav class="header-nav">
                     <div class="shopping-cart">
-                        <a href="ShoppingBasket.html"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
+                        <a href="basket.php"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
                     </div>
                     <a href="About-Us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
                     <?php if (isset($_SESSION['user_id'])): ?>
@@ -82,37 +82,46 @@ if (isset($_GET['submitted'])){
             </div>
         </header>
         <?php if (isset($recipes)): ?>
-            <h2 id="search-header">Search Results:</h2>
-            <form class= "filter_search" method= "get" action= "search.php">
-                <input type="hidden" name="submitted" value="true">
-                <input type="hidden" name="search" value="<?= htmlspecialchars($name ?? '') ?>">
-                <select name="filter" id="filter_options" onchange="this.form.submit()">
-                    <option value="relevance" <?= ($filter ?? '') === 'relevance' ? 'selected' : '' ?>>Sort By: Relevance</option>
-                    <option value="price_low_to_high" <?= ($filter ?? '') === 'price_low_to_high' ? 'selected' : '' ?>>Sort By: Price (Low to High)</option>
-                    <option value="price_high_to_low" <?= ($filter ?? '') === 'price_high_to_low' ? 'selected' : '' ?>>Sort By: Price (High to Low)</option>
-                    <option value="calories_low_to_high" <?= ($filter ?? '') === 'calories_low_to_high' ? 'selected' : '' ?>>Sort By: Calories (Low to High)</option>
-                    <option value="calories_high_to_low" <?= ($filter ?? '') === 'calories_high_to_low' ? 'selected' : '' ?>>Sort By: Calories (High to Low)</option>
-                </select>
-        
-                <select name= "categories" id="category_options" onchange="this.form.submit()">
-                    <option value="all_categories" <?= ($category ?? '') === 'all_categories' ? 'selected' : '' ?>>All Categories</option>
-                    <option value="breakfast" <?= ($category ?? '') === 'breakfast' ? 'selected' : '' ?>>Breakfast</option>
-                    <option value="lunch" <?= ($category ?? '') === 'lunch' ? 'selected' : '' ?>>Lunch</option>
-                    <option value="dinner" <?= ($category ?? '') === 'dinner' ? 'selected' : '' ?>>Dinner</option>
-                    <option value="snack" <?= ($category ?? '') === 'snack' ? 'selected' : '' ?>>Snack</option>
-                    <option value="dessert" <?= ($category ?? '') === 'dessert' ? 'selected' : '' ?>>Dessert</option>
-                    <option value="bento" <?= ($category ?? '') === 'bento' ? 'selected' : '' ?>>Bento</option>
-                </select>
-            </form>
-            <?php if (!empty($recipes)): ?>
-                <?php foreach ($recipes as $recipe): ?>
-                    <?= htmlspecialchars($recipe['name']) ?><br>
-                    <?= htmlspecialchars($recipe['category']) ?><br>
-                    <?= htmlspecialchars($recipe['calories']) ?><br>
-                    <?= htmlspecialchars($recipe['description']) ?><br>
-                    <a href="meal.php?id=<?= $recipe['meal_id'] ?>">View</a><br><br>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <div class="search-header">
+                <h2>Search Results:</h2>
+                <form class= "filter_search" method= "get" action= "search.php">
+                    <input type="hidden" name="submitted" value="true">
+                    <input type="hidden" name="search" value="<?= htmlspecialchars($name ?? '') ?>">
+                    <select name="filter" id="filter_options" onchange="this.form.submit()">
+                        <option value="relevance" <?= ($filter ?? '') === 'relevance' ? 'selected' : '' ?>>Sort By: Relevance</option>
+                        <option value="price_low_to_high" <?= ($filter ?? '') === 'price_low_to_high' ? 'selected' : '' ?>>Sort By: Price (Low to High)</option>
+                        <option value="price_high_to_low" <?= ($filter ?? '') === 'price_high_to_low' ? 'selected' : '' ?>>Sort By: Price (High to Low)</option>
+                        <option value="calories_low_to_high" <?= ($filter ?? '') === 'calories_low_to_high' ? 'selected' : '' ?>>Sort By: Calories (Low to High)</option>
+                        <option value="calories_high_to_low" <?= ($filter ?? '') === 'calories_high_to_low' ? 'selected' : '' ?>>Sort By: Calories (High to Low)</option>
+                    </select>
+            
+                    <select name= "categories" id="category_options" onchange="this.form.submit()">
+                        <option value="all_categories" <?= ($category ?? '') === 'all_categories' ? 'selected' : '' ?>>All Categories</option>
+                        <option value="breakfast" <?= ($category ?? '') === 'breakfast' ? 'selected' : '' ?>>Breakfast</option>
+                        <option value="lunch" <?= ($category ?? '') === 'lunch' ? 'selected' : '' ?>>Lunch</option>
+                        <option value="dinner" <?= ($category ?? '') === 'dinner' ? 'selected' : '' ?>>Dinner</option>
+                        <option value="snack" <?= ($category ?? '') === 'snack' ? 'selected' : '' ?>>Snack</option>
+                        <option value="dessert" <?= ($category ?? '') === 'dessert' ? 'selected' : '' ?>>Dessert</option>
+                        <option value="bento" <?= ($category ?? '') === 'bento' ? 'selected' : '' ?>>Bento</option>
+                    </select>
+                </form>
+            </div>
+            <div class="menu-grid">
+                <?php if (!empty($recipes)): ?>
+                    <?php foreach ($recipes as $recipe): ?>
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <?= htmlspecialchars($recipe['name']) ?><br>
+                                <?= htmlspecialchars($recipe['category']) ?><br>
+                                £<?= htmlspecialchars($recipe['price']) ?><br>
+                                <?= htmlspecialchars($recipe['calories']) ?> calories<br>
+                                <?= htmlspecialchars($recipe['description']) ?><br>
+                                <a href="meal.php?id=<?= $recipe['meal_id'] ?>">View</a><br><br>
+                            </div>
+                        </div>  
+                    <?php endforeach; ?>
+                <?php endif; ?>          
+            </div>
         <?php endif; ?>
     </body>
 </html>

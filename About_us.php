@@ -25,7 +25,7 @@ session_start();
                 </form>
                 <nav class="header-nav">
                     <div class="shopping-cart">
-                        <a href="ShoppingBasket.html"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
+                        <a href="basket.php"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> <!--Placeholder URL-->
                     </div>
                     <a href="About_us.php"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Placeholder URL-->
                     <?php if (isset($_SESSION['user_id'])): ?>
