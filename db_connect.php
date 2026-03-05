@@ -5,7 +5,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "dorm_diner";
+$db = "cs2team34_db";
 
 //creating connection 
 $conn = new mysqli ($host, $user, $pass, $db);

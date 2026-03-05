@@ -11,7 +11,7 @@ $db = "cs2team34_db";
 $host = "localhost";
 $user = "root";
 $pass = "";  // empty password for XAMPP
-$dbname = "dorm_diner";  // real local DB name
+$dbname = "cs2team34_db";  // real local DB name
 
 // MySQLi connection (for teammate's admin files)
 $conn = new mysqli($host, $user, $pass, $dbname);
