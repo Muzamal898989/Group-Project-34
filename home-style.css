@@ -1,0 +1,103 @@
+/*container for image and text*/
+.slogan-section {
+  position: relative;
+}
+
+/*makes the image the whole width of the screen*/
+.slogan-section img {
+  width: 100%;
+  display: block;
+}
+
+/*formats the position of the text*/
+.slogan-section .slogan-text {
+  position: absolute;
+  top: 30%;
+  left: 13%;
+  font-family: "Google Sans Flex";
+  font-weight: 700;
+}
+
+/*Makes the link appear below the main text*/
+#slogan-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+  border-radius: 28px;
+  background: #ffffff;
+  margin-top: 8%;
+}
+
+/*changes the colour of the hyperlink when hovered over*/
+#slogan-menu-link:hover {
+  color: grey;
+}
+
+/*formats the reviews section*/
+.reviews-section {
+  background-color: bisque;
+  padding: 10px;
+  font-family: "Google Sans Flex";
+  font-weight: 400;
+}
+
+/*formats the title of reviews*/
+.reviews-title {
+  display: flex;
+  font-family: sans-serif;
+  justify-content: center;
+  font-family: "Google Sans Flex";
+  font-weight: 400;
+}
+
+/*changes the position of the reviews*/
+.reviews {
+  display: flex;
+  justify-content: center;
+}
+
+/*popular food options*/
+.popular-section {
+    background-color: bisque;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Enables horizontal scroll */
+    overflow-y: hidden;
+    padding: 10px 20px;
+    gap: 20px;
+    scroll-behavior: smooth;
+}
+
+/* Individual food card */
+.food-card {
+    flex: 0 0 auto; /* Prevents cards from shrinking */
+    width: 200px;
+    text-align: center;
+}
+
+/* Force image size and fit */
+.food-card img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+}
+
+.food-card p {
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: 'Google Sans Flex', sans-serif;
+    white-space: normal; 
+}
+
+.popular-section::-webkit-scrollbar {
+    height: 6px;
+}
+.popular-section::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
