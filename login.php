@@ -1,9 +1,10 @@
 <?php
-    require_once("functions.php");
+session_start();
+require_once("functions.php");
 
-    if(isset($_POST['login'])){
-        $login_status = loginUser();
-    }
+if(isset($_POST['login'])){
+    $login_status = loginUser();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +42,17 @@
             </div>
 
             <div class="form-group">
+                <a href="forgotPassword.php">Forgot your password?</a>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" name="login" value="Login" class="btn btn-primary">
             </div>
 
             <div class="form-group">
                 <p>Don't have an account? <a href="signUp.php">Sign Up Here</a></p>
             </div>
+
         </form>
 
         <?php

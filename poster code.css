@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Security Poster - Final Enhanced</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1a3f;
+            --cyan: #00c2ff;
+            --red: #ff3b30; /* Brighter warning red */
+            --white: #ffffff;
+            --grey-light: #cfd8dc;
+            --bg-gradient: radial-gradient(circle at center, #0f2658 0%, #0a1a3f 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--navy);
+            background-image: var(--bg-gradient);
+            font-family: 'Roboto', sans-serif;
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .poster-container {
+            width: 1000px; /* Wide format for impact */
+            height: 1414px; /* A3 Aspect Ratio */
+            padding: 60px 80px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: transparent;
+        }
+
+        /* --- HEADLINE SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 82px;
+            line-height: 0.95;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .highlight-cyan {
+            color: var(--cyan);
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* Subtle underline for emphasis */
+        .highlight-cyan::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 6px;
+            background: var(--cyan);
+            opacity: 0.6;
+            margin-top: 5px;
+            border-radius: 4px;
+        }
+
+        .subline {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--grey-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* --- FAKE EMAIL (The Visual Trap) --- */
+        .email-wrapper {
+            position: relative;
+            margin-bottom: 60px;
+            /* Human Factors: The glow draws the eye to the center immediately */
+            filter: drop-shadow(0 0 20px rgba(0, 194, 255, 0.15));
+        }
+
+        .email-box {
+            background: #fff;
+            color: #222;
+            border-radius: 12px;
+            padding: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            position: relative;
+            border-left: 8px solid #ddd; /* Visual cue for email client */
+        }
+
+        .email-meta {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .email-row { margin-bottom: 12px; }
+        .label { font-weight: bold; color: #666; display: inline-block; width: 80px; }
+        .input-text { color: #333; }
+        
+        .fake-link {
+            color: #0056b3;
+            text-decoration: underline;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- ANNOTATIONS (Red Flags) --- */
+        /* Using absolute positioning to circle specific text */
+        
+        .red-flag-zone {
+            position: absolute;
+            border: 4px solid var(--red);
+            background-color: rgba(255, 59, 48, 0.05); /* Highlighter effect */
+            border-radius: 50px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* 1. Mismatched Domain */
+        .zone-domain {
+            top: 35px;
+            left: 360px;
+            width: 440px;
+            height: 35px;
+        }
+
+        /* 2. Urgency/Link */
+        .zone-urgency {
+            bottom: 115px; /* Adjusted for link position */
+            left: 30px;
+            width: 380px;
+            height: 40px;
+        }
+
+        /* Warning Labels */
+        .warning-label {
+            position: absolute;
+            color: var(--red);
+            font-family: 'Permanent Marker', cursive;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff; /* Legibility bg */
+            padding: 2px 10px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            z-index: 11;
+            white-space: nowrap;
+        }
+
+        .warn-domain { top: -25px; right: 0; }
+        .warn-urgency { bottom: -35px; left: 20px; }
+
+        .icon-warn { font-style: normal; font-size: 24px; }
+
+        /* --- 3-STEP BEHAVIOURAL RULES --- */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: auto;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .step-card {
+            flex: 1;
+            text-align: center;
+            background: rgba(255,255,255,0.03); /* Subtle container */
+            padding: 25px 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .step-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid var(--cyan);
+            color: var(--cyan);
+            font-size: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 25px rgba(0, 194, 255, 0.2);
+            background: var(--navy);
+        }
+
+        .step-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            color: var(--cyan);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-desc {
+            font-size: 18px;
+            color: #ddd;
+            line-height: 1.4;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .qr-box {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        /* CSS Generated QR placeholder */
+        .qr-code {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, #000 25%, transparent 25%), 
+                              linear-gradient(-45deg, #000 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #000 75%), 
+                              linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 10px 10px;
+            background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+        }
+
+        .scan-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--white);
+            line-height: 1.3;
+        }
+
+        .footer-right {
+            text-align: right;
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .footer-right strong { color: #bbb; }
+
+    </style>
+</head>
+<body>
+
+    <div class="poster-container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Your Approval<br><span class="highlight-cyan">Is A Target.</span></h1>
+            <p class="subline">Cybercriminals impersonate executives and suppliers to trick staff into authorizing fraudulent wire transfers.</p>
+        </header>
+
+        <!-- CENTERPIECE: FAKE EMAIL -->
+        <div class="email-wrapper">
+            <div class="email-box">
+                <!-- Red Flag Annotations attached to the email box -->
+                <div class="red-flag-zone zone-domain">
+                    <div class="warning-label warn-domain"><span class="icon-warn">⚠️</span> EXTERNAL DOMAIN</div>
+                </div>
+                
+                <div class="red-flag-zone zone-urgency">
+                    <div class="warning-label warn-urgency"><span class="icon-warn">⚠️</span> UNSAFE LINK & URGENCY</div>
+                </div>
+
+                <div class="email-meta">
+                    <div class="email-row"><span class="label">From:</span> Sarah Jenkins (CEO) &lt;s.jenkins@bank-secure-portal-mail.com&gt;</div>
+                    <div class="email-row"><span class="label">To:</span> Finance Team &lt;payments@bank.com&gt;</div>
+                    <div class="email-row"><span class="label">Subject:</span> <strong>URGENT: Project Alpha Invoice Payment</strong></div>
+                </div>
+
+                <p>Team,</p>
+                <p>I am currently in a meeting with the client and cannot take calls. The attached invoice is overdue and requires immediate settlement to avoid penalties.</p>
+                <p>Please process the $45,000 wire transfer using the portal below immediately:</p>
+                
+                <p><span class="fake-link">https://secure-bank-approval-portal.com/login/auth</span></p>
+
+                <p>Do not wait for my return. Send me the confirmation receipt once done.</p>
+                <p>Regards,<br>Sarah</p>
+            </div>
+        </div>
+
+        <!-- 3-STEP RULES -->
+        <div class="steps-container">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-icon">⏸</div>
+                <div class="step-title">PAUSE</div>
+                <div class="step-desc">Stop immediately if an email asks for money, data, or urgency.</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-icon">📞</div>
+                <div class="step-title">VERIFY</div>
+                <div class="step-desc">Call the sender using a number from the <strong>official directory</strong>.</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-icon">🛡</div>
+                <div class="step-title">PROTECT</div>
+                <div class="step-desc">Do not click. Report the email to IT Security (Ext. 1234).</div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-left">
+                <div class="qr-box"><div class="qr-code"></div></div>
+                <div class="scan-text">SCAN FOR<br>SCAM SPOTTER<br>TOOLKIT</div>
+            </div>
+            <div class="footer-right">
+                <strong>Internal Use Only</strong><br>
+                Global Security Awareness Campaign 2025
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

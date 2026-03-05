@@ -51,12 +51,13 @@ if (isset($_POST['register'])) {
 
         <div class="mb-3">
             <label>Password</label>
-            <input type="password" name="password" placeholder="Enter your password" required>
+            <input type="password" name="password" placeholder="Enter your password" minlength="8" required>
+            <small style="color: grey;">Must be at least 8 characters.</small>
         </div>
 
         <div class="mb-3">
             <label>Confirm Password</label>
-            <input type="password" name="confirmPassword" placeholder="Confirm your password" required>
+            <input type="password" name="confirmPassword" placeholder="Confirm your password" minlength="8" required>
         </div>
 
         <div class="mb-3">

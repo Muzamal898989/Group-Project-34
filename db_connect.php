@@ -5,7 +5,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "dorm_diner";
+$db = "healthy_food_app";
 
 //creating connection 
 $conn = new mysqli ($host, $user, $pass, $db);
