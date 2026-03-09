@@ -7,7 +7,7 @@ $isAdminViewingCustomer =
     $_SESSION['view_mode'] === 'customer';
 ?>
 
-/* customer mode banner  */
+<!--customer mode banner -->
 <?php if ($isAdminViewingCustomer): ?>
     <div style="background: #f8d110; padding:15px; text-align:center; border-bottom: 1px solid #ccc;">
         <strong>You are currently viewing the site as a CUSTOMER (Admin Mode)</strong>

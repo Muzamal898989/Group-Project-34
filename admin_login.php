@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="logo.jpeg" alt="DormDiner Logo" width="100" height="100">
       <h1>Welcome to DormDiner Staff Website</h1>
 <ul>
-  <li><a href="Home.html">Back To Home</a></li>
+  <li><a href="Home.php">Back To Home</a></li>
   <li><a href="contact.html">Customer Communication</a></li>
 </ul>
 
