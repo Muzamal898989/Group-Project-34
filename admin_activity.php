@@ -5,6 +5,9 @@ include 'config/db.php';
 $result = $conn->query("SELECT * FROM activity_log ORDER BY created_at DESC");
 ?>
 
+<head></head>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
 <h2>Admin Activity Log</h2>
 
 <table border="1" cellpadding="10">

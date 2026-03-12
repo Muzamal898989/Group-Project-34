@@ -129,30 +129,70 @@ $result = $conn->query($query);
 <!DOCTYPE html>
 <html lang= "en">
     <head>
+        <link rel="stylesheet" href="css/admin.css">
+         
         <title>admin dashboard</title>
 </head>
 <body>
-    <h1>welcome, <?= $_SESSION['admin_username'] ?> </h1>
-    <?php if($latest_stock_change): ?>
-<div style="background:#fff3cd; padding:10px; border:1px solid #ffeeba; margin-bottom:15px;">
-Stock Updated: <b><?= $latest_stock_change['admin_username'] ?></b>
-changed <b><?= $latest_stock_change['name'] ?></b> stock 
-from <b><?= $latest_stock_change['old_stock'] ?></b>
-to <b><?= $latest_stock_change['new_stock'] ?></b>>
-</div>
-<?php endif; ?>
+    <div class="dashboard-wrapper">
+        <!--SIDE BAR -->
+     <nav class="sidebar">
+        <div class="sidebar-header">
+            <img src="images/LogoHeader.jpg" alt="Dorm Diner Logo" style="height: 110px;">
+        </div>
+        <div class="nav-links">
     <a href="admin_dashboard.php?action=add">Add Meal</a>
     <a href="view_orders.php">View Orders</a>
     <a href="admin_activity.php">View Activity Log</a>
     <a href="logout.php">Logout</a>
     <a href="admin_customers.php">Manage Customers</a>
+   </div>
+   <hr style="border: 0.5px solid #e0be8a; margin: 20px 0;">
+
+   <div class="sidebar-filters">
+<h4>Filters</h4>
+<form method="GET">
+    <input type="text" name="search" placeholder="Search meals...">
+   <input type="number" step="0.01" name="min_price" placeholder="Min Price">
+    <input type="number" step="0.01" name="max_price" placeholder="Max Price">
+    <select name="stock">
+        <option value="">All</option>
+        <option value="out">Out of Stock</option>
+        <option value="in">In Stock</option>
+    </select>
+    <input type="number" name="calories" placeholder="Max Calories">
+    <button type="submit">Search</button>
+    <a href="admin_dashboard.php">Reset Filters</a>
+</form>
+</div>
+   </nav>
+
+   <!--MAIN CONTENT -->
+   <div class="main-content">
+     <header class="top-header">
+        
+        <h1>Welcome, <?= $_SESSION['admin_username'] ?> </h1>
+      
+    </header>
+    
+    
+    <?php if($latest_stock_change): ?>
+<div style="background:#fff3cd; padding:10px; border:1px solid #ffeeba; margin-bottom:15px;">
+Stock Updated: <b><?= $latest_stock_change['admin_username'] ?></b>
+changed <b><?= $latest_stock_change['name'] ?></b> stock 
+from <b><?= $latest_stock_change['old_stock'] ?></b>
+to <b><?= $latest_stock_change['new_stock'] ?></b>
+</div>
+<?php endif; ?>
+
+   
     <!--ADD BUTTON FOR CUSTOMER MODE-->
 <form method="POST" action="switch_mode.php">
     <button type="submit" name="mode" value="customer">
         Switch to Customer Mode
     </button>
 </form>
-  <hr>
+  <br>
 <!--ADD MEAL -->
 <?php if(isset($_GET['action']) && $_GET['action'] == "add"): ?>
 <h2>Add Meal</h2>
@@ -193,6 +233,8 @@ to <b><?= $latest_stock_change['new_stock'] ?></b>>
 <hr>
 <?php endif; ?>
 <!--SEARCH AND FILTER -->
+ <!--<section class="card">
+    <h3>Filters</h3>
 <form method="GET">
     <input type="text" name="search" placeholder="Search meals...">
    <input type="number" step="0.01" name="min_price" placeholder="Min Price">
@@ -206,11 +248,15 @@ to <b><?= $latest_stock_change['new_stock'] ?></b>>
     <button type="submit">Search</button>
     <a href="admin_dashboard.php">Reset Filters</a>
 </form>
+</section>-->
 <br>
 
 <!--MEAL TABLE -->
+<section class="card">
+    <div class="table-header">
 <h2>All Meals</h2>
-<table border="1" cellpadding="10">
+</div>
+<table>
     <tr>
         <th>Name</th>
         <th>Price</th>
@@ -231,5 +277,8 @@ to <b><?= $latest_stock_change['new_stock'] ?></b>>
         </tr>
         <?php endwhile; ?>
 </table>
+<footer>
+    Dorm Diner Admin Dashboard
+</footer>
 </body>
 </html>

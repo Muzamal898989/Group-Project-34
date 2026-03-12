@@ -22,7 +22,7 @@ header("Location: admin_customers.php");
 exit();
 }
 ?>
-
+<head><link rel="stylesheet" href="css/admin.css"></head>
 <h2>Add Customer</h2>
 
 <form method="POST">

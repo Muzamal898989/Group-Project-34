@@ -4,6 +4,7 @@ require_once 'config/db.php';
 $result = $conn->query("SELECT * FROM customers ORDER BY customer_id DESC");
 ?>
 
+<head><link rel="stylesheet" href="css/admin.css"></head>
 <h2>Customers</h2>
 <br>
 <a href="add_customer.php">Add New Customer</a>

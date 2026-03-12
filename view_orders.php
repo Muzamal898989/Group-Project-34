@@ -41,6 +41,7 @@ if (!$result) {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/admin.css">
     <title>View Orders</title>
 </head>
 <body>

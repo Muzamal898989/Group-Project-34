@@ -1,0 +1,260 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #ddc299;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#main-header {
+  background: #fff3cd;
+  color: white;
+  padding: 10px 20px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  display: flex;
+  align-items: center;
+}
+
+#main-header img {
+  height: 60px;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,.15));
+}
+
+/* MAIN CONTENT AREA */
+
+.container {
+  background: white;
+  border-radius: 10px;
+  max-width: 1000px;
+  width: 90%;
+  margin: 30px auto;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+}
+
+
+h1, h2 {
+  color: #313131;
+  margin-bottom: 20px;
+}
+
+/* NAVIGATION LINKS */
+
+.nav-links {
+  margin-bottom: 20px;
+}
+
+/* .nav-links a {
+  margin-right: 15px;
+  color: #bb5a5a;
+  font-weight: 600;
+  text-decoration: none;
+}
+  */ 
+  .nav-links a {
+    display: inline-block;
+    text-decoration: none;
+    color: #bb5a5a; 
+    border: 2px solid #bb5a5a;
+    background-color: #fff3cd;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #e89e2e;
+}
+
+
+form input,
+form select,
+form textarea {
+  padding: 8px;
+  border: 2px solid #e0be8a;
+  border-radius: 6px;
+  background: #fff8ef;
+  margin-bottom: 10px;
+}
+
+form button {
+  padding: 10px 15px;
+  background: #c45f5f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #ddbb88;
+  color: #5a3e2b;
+}
+
+
+table {
+  width: 80%;
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: #eee;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0,0,0,.5);
+}
+
+table th {
+  background: #ddbb88;
+  color: white;
+  padding: 10px;
+}
+
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+table tr:hover {
+  background: #fff6e8;
+}
+
+/* DASHBOARD ALERTS */
+
+.alert {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+
+footer {
+  margin-top: auto;
+  background: #313131;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: .85rem;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    width: 250px;
+    background-color: bisque; 
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed; 
+    height: 100vh;
+}
+.sidebar .nav-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.sidebar .nav-links a {
+    color: #c45f5f;
+    border: none;
+    background: transparent;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 100%;
+}
+
+.sidebar .nav-links a:hover {
+    background: bisque;
+    color: white;
+}
+/* Sidebar Filter Styling */
+.sidebar-filters {
+    padding: 10px;
+}
+
+.sidebar-filters h4 {
+    color: #313131;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar-filters form {
+    display: flex;
+    flex-direction: column; /* Stacks inputs vertically */
+    gap: 10px;
+}
+
+.sidebar-filters input, 
+.sidebar-filters select {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: black;
+    font-size: 0.85rem;
+}
+
+.sidebar-filters input::placeholder {
+    color: #bbb;
+}
+
+.filter-btn {
+    background: #ddbb88;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.filter-btn:hover {
+    background: #fff3cd;
+}
+
+.reset-link {
+    color: #aaa;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.reset-link:hover {
+    color: white;
+}
+
+/* Ensure Sidebar stays fixed and scrollable if filters are long */
+.sidebar {
+    width: 260px;
+    background: bisque;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto; 
+    padding-bottom: 30px;
+}
+
+
+.main-content {
+    flex: 1;
+    margin-left: 250px; 
+    padding: 30px;
+    background: #ddc299; 
+}
