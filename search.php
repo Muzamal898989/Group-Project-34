@@ -50,7 +50,7 @@ if (isset($_GET['submitted'])){
         <link rel="icon" type="image/png" href="images/favicon.png">
         <link rel = "stylesheet" type="text/css" href="css/header-style.css" />
         <link rel = "stylesheet" type="text/css" href="css/footer-style.css" />
-        <link rel = "stylesheet" type="text/css" href="css/search.css" />
+        <link rel = "stylesheet" type="text/css" href="css/search-styles.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person,search,shopping_cart" />
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,19 +83,21 @@ if (isset($_GET['submitted'])){
         </header>
         <?php if (isset($recipes)): ?>
             <div class="search-header">
-                <h2>Search Results:</h2>
-                <form class= "filter_search" method= "get" action= "search.php">
+                <div class="search-header-1">
+                    <h2>Search Results:</h2>
+                </div>
+                <form class= "search-header-2" method= "get" action= "search.php">
                     <input type="hidden" name="submitted" value="true">
                     <input type="hidden" name="search" value="<?= htmlspecialchars($name ?? '') ?>">
-                    <select name="filter" id="filter_options" onchange="this.form.submit()">
+                    <select class="signin-header" name="filter" id="filter_options" onchange="this.form.submit()">
                         <option value="relevance" <?= ($filter ?? '') === 'relevance' ? 'selected' : '' ?>>Sort By: Relevance</option>
                         <option value="price_low_to_high" <?= ($filter ?? '') === 'price_low_to_high' ? 'selected' : '' ?>>Sort By: Price (Low to High)</option>
                         <option value="price_high_to_low" <?= ($filter ?? '') === 'price_high_to_low' ? 'selected' : '' ?>>Sort By: Price (High to Low)</option>
                         <option value="calories_low_to_high" <?= ($filter ?? '') === 'calories_low_to_high' ? 'selected' : '' ?>>Sort By: Calories (Low to High)</option>
                         <option value="calories_high_to_low" <?= ($filter ?? '') === 'calories_high_to_low' ? 'selected' : '' ?>>Sort By: Calories (High to Low)</option>
                     </select>
-            
-                    <select name= "categories" id="category_options" onchange="this.form.submit()">
+                    
+                    <select class="signin-header" name= "categories" id="category_options" onchange="this.form.submit()">
                         <option value="all_categories" <?= ($category ?? '') === 'all_categories' ? 'selected' : '' ?>>All Categories</option>
                         <option value="breakfast" <?= ($category ?? '') === 'breakfast' ? 'selected' : '' ?>>Breakfast</option>
                         <option value="lunch" <?= ($category ?? '') === 'lunch' ? 'selected' : '' ?>>Lunch</option>
@@ -110,6 +112,7 @@ if (isset($_GET['submitted'])){
                 <?php if (!empty($recipes)): ?>
                     <?php foreach ($recipes as $recipe): ?>
                         <div class="menu-item">
+                            <img class="meal-image" src="images/<?= htmlspecialchars($recipe['image']) ?>" alt="<?= htmlspecialchars($recipe['name']) ?>"><br>
                             <div class="item-details">
                                 <?= htmlspecialchars($recipe['name']) ?><br>
                                 <?= htmlspecialchars($recipe['category']) ?><br>
@@ -117,8 +120,8 @@ if (isset($_GET['submitted'])){
                                 <?= htmlspecialchars($recipe['calories']) ?> calories<br>
                                 <?= htmlspecialchars($recipe['description']) ?><br>
                                 <a href="meal.php?id=<?= $recipe['meal_id'] ?>">View</a><br><br>
-                            </div>
-                        </div>  
+                            </div>  
+                        </div>
                     <?php endforeach; ?>
                 <?php endif; ?>          
             </div>
