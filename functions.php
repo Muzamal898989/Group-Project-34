@@ -101,7 +101,10 @@ function loginUser() {
     }
 }
 
-
+// ─────────────────────────────────────────────
+// FORGOT PASSWORD — generates a reset token
+// and would normally email the link to the user
+// ─────────────────────────────────────────────
 function forgotPassword() {
     $db = db_connect();
 
@@ -135,7 +138,22 @@ function forgotPassword() {
     // Build the reset link
     $resetLink = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/reset_password.php?token=" . $token;
 
- 
+    // ── Email sending ──────────────────────────────────────────────────────
+    // On XAMPP, PHP mail() may not work out of the box.
+    // Option 1: Use PHP's mail() (configure php.ini SMTP settings first)
+    // Option 2: Use PHPMailer with a real SMTP account (recommended for production)
+    //
+    // Uncomment the block below once your mail setup is working:
+    //
+    // $subject = "Dorm Diner - Password Reset Request";
+    // $body    = "Hi,\n\nClick the link below to reset your password (valid for 1 hour):\n\n$resetLink\n\nIf you did not request this, ignore this email.";
+    // $headers = "From: noreply@dormdiner.ac.uk";
+    // mail($email, $subject, $body, $headers);
+    // ──────────────────────────────────────────────────────────────────────
+
+    // ── TESTING ONLY: show link on screen — REMOVE IN PRODUCTION ──────────
+    return "<p style='color:green;'>Reset link generated! <a href='$resetLink'>Click here to reset your password</a>.</p>";
+    // ──────────────────────────────────────────────────────────────────────
 }
 
 // ─────────────────────────────────────────────

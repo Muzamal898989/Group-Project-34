@@ -1,0 +1,74 @@
+<?php 
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Links CSS, icons and fonts to the page-->
+        <title>Home</title>
+        <link rel="icon" type="image/png" href="images/favicon.png">
+        <link rel = "stylesheet" type="text/css" href="css/header-style.css" />
+        <link rel = "stylesheet" type="text/css" href="css/footer-style.css" />
+        <link rel = "stylesheet" type="text/css" href="css/home-style.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person,search,shopping_cart" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!--The header of the website which contains links to different parts of the website-->
+        <header>
+            <div class="header">
+                <a href="home.php">  <img src="images/LogoHeader.jpg" alt="Logo" id="logo-header"> </a> <!--Navigates the user to the home page-->
+                <form class="search" method = "get" action="search.php"> <!--Users can use this to search the website for meals-->
+                    <span class="searchicon material-symbols-outlined">search</span>
+                    <input class="searchinput" type="search" name="search" placeholder="Find your next craving..." required>
+                    <input type="hidden" name="submitted" value="true"/>
+                </form>
+                <nav class="header-nav">
+                    <div class="shopping-cart">
+                        <a href="basket.php"> <span class="basketicon material-symbols-outlined">shopping_cart</span> </a> 
+                    <a href="About_us.html"> <img src="images/jukeboxicon.png" alt="About" class="jukebox"> </a> <!--Navigates the user to the about us page-->
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="logout.php" class="signin-header">Logout</a>
+                    <?php else: ?>
+                    <a href="login.php" class="signin-header">Sign In</a>
+                    <?php endif; ?>
+                    <div class="profile-header">
+                        <a href="user_dashboard.php"> <span class="profileicon material-symbols-outlined">person</span> </a> 
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <!--The first section of the home page which shows an image, slogan and link to the menu-->
+            <div class="slogan-section">
+                <img src="images/home-background-image.png" alt="background image" id="backround-img1">
+                <h2 class="slogan-text">Student Meals, <br> Made Simple</h2>
+                <a href="menu.php" class="slogan-text" id="slogan-menu-link">Browse Our Menu!</a><!--Placeholder URL-->
+            </div>
+            <!--Section to show off positive reviews-->
+            <div class="reviews-section">
+                <h2 class="reviews-title">Our Reviews</h2>
+                <p class="reviews"> Jalen Brunson - "Fast, fresh and flawlessly delivered, this service has completely transformed the way I order food."</p>
+                <p class="reviews"> A'ja Wilson - “Every order arrives hot and on time, making this my favourite app for meals.”</p>
+                <p class="reviews"> James Cook - “A seamless experience, offering incredible convenience and consistently great meals.”</p>
+            </div>
+        </main>
+        <!--Footer which contains links, logo and business address-->
+        <footer>
+            <div class="footer-group">
+            <h3 class="footer-h3">Dorm Diner</h3>
+            <p class="footer-p">Aston University, Birmingham</p>
+            <p class="footer-p">B4 7ET</p>
+            </div>
+            <div class="footer-nav">
+            <a href="About-us.php" class="footer-link"><p>About Us</p></a> <!--Navigates the user to the about us page-->
+            <a href="admin_login.php" class="footer-link"><p>Staff Login</p></a> <!--Placeholder URL-->
+            <a href="menu.php" class="footer-link"><p>Our Menu</p></a> <!--Placeholder URL-->
+            <a href="logout.php" class="footer-link"><p>Help & Support</p></a> <!--Directs user to chatbot-->
+            </div>
+            <img src="images/DormDinerLogo.jpg" alt="Logo" class="footer-logo">
+        </footer>
+    </body>
+</html>
