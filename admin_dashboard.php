@@ -11,10 +11,10 @@ include 'config/db.php';
 
 // Get latest stock update
 $latest_stock_change = $conn->query("
-SELECT a.admin_username, m.name, a.old_stock, a.new_stock, a.created_at
+SELECT a.admin_username, m.name, a.old_stock, a.new_stock, a.comment, a.created_at
 FROM activity_log a
 JOIN meals m ON a.meal_id = m.meal_id
-WHERE a.action='Stock Updated'
+WHERE a.action IN('Stock Updated', 'Meal Updated')
 ORDER BY a.created_at DESC
 LIMIT 1
 ")->fetch_assoc();
@@ -64,24 +64,62 @@ $comment = $_POST['comment'];
 $meal_id = intval($_GET['id']);
 
 // Get old stock
-$old_data = $conn->query("SELECT stock FROM meals WHERE meal_id = $meal_id")->fetch_assoc();
-$old_stock = $old_data['stock'];
+//$old_data = $conn->query("SELECT stock FROM meals WHERE meal_id = $meal_id")->fetch_assoc();
+//$old_stock = $old_data['stock'];
+
+$old_data = $conn->query("SELECT * FROM meals WHERE meal_id = $meal_id")->fetch_assoc();
 
 // Update meal
 $stmt = $conn->prepare("UPDATE meals SET name=?, price=?, calories=?, stock=? WHERE meal_id=?");
 $stmt->bind_param("sdiii", $name, $price, $calories, $stock, $meal_id);
 $stmt->execute();
 
-// Log activity if stock changed
-if($old_stock != $stock){
+// Log activity if stock, name, price, or calories changed
+if(
+    $old_data['stock'] != $stock ||
+    $old_data['name'] != $name ||
+    $old_data['price'] != $price ||
+    $old_data['calories'] != $calories
+){
 
 $admin = $_SESSION['admin_username'];
 
-$log_stmt = $conn->prepare("INSERT INTO activity_log 
-(admin_username, action, meal_id, old_stock, new_stock, comment) 
-VALUES (?, 'Stock Updated', ?, ?, ?, ?)");
+$action = "Meal Updated";
 
-$log_stmt->bind_param("siiis", $admin, $meal_id, $old_stock, $stock, $comment);
+$details = "Changed: ";
+
+if($old_data['name'] != $name){
+    $details .= "Name ({$old_data['name']} -> $name), ";
+}
+if($old_data['price'] != $price){
+    $details .= "Price ({$old_data['price']} -> $price), ";
+}
+if($old_data['calories'] != $calories){
+    $details .= "Calories ({$old_data['calories']} -> $calories), ";
+}
+if($old_data['stock'] != $stock){
+    $details .= "Stock ({$old_data['stock']} -> $stock), ";
+}
+
+$details = rtrim($details, ", ");
+
+$admin = $_SESSION['admin_username'];
+
+$log_stmt = $conn->prepare("
+INSERT INTO activity_log 
+(admin_username, action, meal_id, old_stock, new_stock, comment) 
+VALUES (?, ?, ?, ?, ?, ?)
+");
+
+$log_stmt->bind_param("ssiiss", 
+    $admin, 
+    $action, 
+    $meal_id, 
+    $old_data['stock'], 
+    $stock, 
+    $details
+);
+
 $log_stmt->execute();
 
 }
@@ -175,16 +213,14 @@ $result = $conn->query($query);
       
     </header>
     
-    
+    <!--BANNER-->
     <?php if($latest_stock_change): ?>
-<div style="background:#fff3cd; padding:10px; border:1px solid #ffeeba; margin-bottom:15px;">
-Stock Updated: <b><?= $latest_stock_change['admin_username'] ?></b>
-changed <b><?= $latest_stock_change['name'] ?></b> stock 
-from <b><?= $latest_stock_change['old_stock'] ?></b>
-to <b><?= $latest_stock_change['new_stock'] ?></b>
+<div class="alert">
+    <?= $latest_stock_change['admin_username'] ?> updated
+     <?= $latest_stock_change['name'] ?> <br><br>
+      <?= $latest_stock_change['comment'] ?>  
 </div>
-<?php endif; ?>
-
+    <?php endif; ?>
    
     <!--ADD BUTTON FOR CUSTOMER MODE-->
 <form method="POST" action="switch_mode.php">
